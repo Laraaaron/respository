@@ -1,11 +1,18 @@
 package com.forezp.web;
 
+import com.alibaba.fastjson.JSONObject;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.forezp.entity.Account;
+import com.forezp.entity.user;
 import com.forezp.service.AccountService;
+import com.sun.deploy.net.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -41,49 +48,84 @@ public class AccountController {
          */
         return "read";
     }
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+
+    @RequestMapping(value="/signin")
+    public String SignIn(){
+        /**
+         * 登陆页面
+         */
+        return "login";
+    }
+//    @RequestMapping(value = "/list", method = RequestMethod.GET)
+//    @ResponseBody
+//    public List<Account> getAccounts() {
+//        return accountService.findAccountList();
+//    }
+
+    @RequestMapping(value = "/checkmsg", method = RequestMethod.POST)
     @ResponseBody
-    public List<Account> getAccounts() {
-        return accountService.findAccountList();
-    }
-
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Account getAccountById(@PathVariable("id") int id) {
-        return accountService.findAccount(id);
-    }
-
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public String updateAccount(@PathVariable("id") int id, @RequestParam(value = "name", required = true) String name,
-                                @RequestParam(value = "money", required = true) double money) {
-        int t= accountService.update(name,money,id);
-        if(t==1) {
-            return "success";
-        }else {
-            return "fail";
+    public String getAccountById(HttpServletRequest request) {
+        /**
+         * 验证用户登陆信息
+         */
+        String user_email=request.getParameter("user_email");
+        String user_password=request.getParameter("user_password");
+        user result =accountService.findAccount(user_email,user_password);
+        System.out.println(user_email+user_password);
+        System.out.println(result);
+        JSONObject msg =new JSONObject();
+        if (result != null){
+            msg.put("status",true);
+            msg.put("user_name",result.getUser_name());
+            return msg.toJSONString();
         }
-
-    }
-
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public String delete(@PathVariable(value = "id")int id) {
-        int t= accountService.delete(id);
-        if(t==1) {
-            return "success";
-        }else {
-            return "fail";
+        else {
+            msg.put("status",false);
+            return msg.toJSONString();
         }
-
     }
 
-    @RequestMapping(value = "", method = RequestMethod.POST)
-    public String postAccount(@RequestParam(value = "name") String name,
-                              @RequestParam(value = "money") double money) {
+//    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+//    public String updateAccount(@PathVariable("id") int id, @RequestParam(value = "name", required = true) String name,
+//                                @RequestParam(value = "money", required = true) double money) {
+//        int t= accountService.update(name,money,id);
+//        if(t==1) {
+//            return "success";
+//        }else {
+//            return "fail";
+//        }
+//
+//    }
 
-       int t= accountService.add(name,money);
+//    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+//    public String delete(@PathVariable(value = "id")int id) {
+//        int t= accountService.delete(id);
+//        if(t==1) {
+//            return "success";
+//        }else {
+//            return "fail";
+//        }
+//
+//    }
+
+    @RequestMapping(value = "/signup", method = RequestMethod.POST)
+    @ResponseBody
+    public String postAccount(HttpServletRequest request) {
+        /**
+         * 用户注册入口
+         */
+        String user_name=request.getParameter("user_name");
+        String user_email=request.getParameter("user_email");
+        String user_password=request.getParameter("user_password");
+//        System.out.println("user_name:"+user_name+"user_email:"+user_email+"user_password:"+user_password);
+       int t= accountService.add(user_email,user_password,user_name);
+        JSONObject msg =new JSONObject();
        if(t==1) {
-           return "success";
+           msg.put("status",true);
+           return msg.toJSONString();
        }else {
-           return "fail";
+           msg.put("status",false);
+           return msg.toJSONString();
        }
 
     }
