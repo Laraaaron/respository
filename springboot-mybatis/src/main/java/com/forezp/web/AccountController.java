@@ -3,6 +3,7 @@ package com.forezp.web;
 import com.forezp.entity.Account;
 import com.forezp.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,14 +11,38 @@ import java.util.List;
 /**
  * Created by fangzhipeng on 2017/4/20.
  */
-@RestController
-@RequestMapping("/account")
+@Controller
+@RequestMapping("/blog")
 public class AccountController {
 
     @Autowired
     AccountService accountService;
 
+    @RequestMapping(value = "/home",method = {RequestMethod.GET})
+    public String ToHomePage() {
+        /**
+         * 首页
+         */
+        return "index";
+    }
+
+    @RequestMapping(value = "/article_page")
+    public String ToArticlePage(){
+        /**
+         * 文章展示页
+         */
+        return "article";
+    }
+
+    @RequestMapping(value = "/article_read")
+    public String ToArticleRead(){
+        /**
+         * 文章详情页
+         */
+        return "read";
+    }
     @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @ResponseBody
     public List<Account> getAccounts() {
         return accountService.findAccountList();
     }
@@ -62,6 +87,7 @@ public class AccountController {
        }
 
     }
+
 
 
 }
