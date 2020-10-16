@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -77,6 +78,8 @@ public class AccountController {
         if (result != null){
             msg.put("status",true);
             msg.put("user_name",result.getUser_name());
+            HttpSession session = request.getSession();
+            session.setAttribute("username",result.getUser_name());
             return msg.toJSONString();
         }
         else {

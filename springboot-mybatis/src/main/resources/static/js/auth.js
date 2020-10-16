@@ -14,12 +14,12 @@ function tosignup() {
         success: function (result) {
             console.log(result);//打印服务端返回的数据(调试用)
             if (result.resultCode == 200) {
-                alert("SUCCESS");
+                alert("注册成功");
             }
             ;
         },
         error : function() {
-            alert("异常！");
+            alert("异常！请重试");
         }
     });
 
@@ -36,15 +36,15 @@ function tosignin() {
         data: {"user_password":signinpassword,"user_email":signinemail},
         success: function (result) {
             console.log(result);//打印服务端返回的数据(调试用)
-            // alert(2222222)
-            // console.log(result.status)
-            // alert(33333)
             if (result.status !=false){
-                // alert(44444)
-                var name = result.user_name;
-                // console.log(name)
-                // alert(55555)
-                window.location.href = "/blog/article_page";
+                url = window.location.pathname;
+                url = url.substring(url.lastIndexOf('/') + 1, url.length);
+                if (url=="article_read"){
+                	window.location.href = "/blog/article_read"
+				}
+				else {
+                    window.location.href = "/blog/article_page";
+                }
 
             }
             else {
