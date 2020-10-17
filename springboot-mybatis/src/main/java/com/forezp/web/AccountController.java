@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * Created by fangzhipeng on 2017/4/20.
@@ -70,11 +71,11 @@ public class AccountController {
         /**
          * 验证用户登陆信息
          */
+        Logger logger = Logger.getGlobal();
         String user_email=request.getParameter("user_email");
         String user_password=request.getParameter("user_password");
         user result =accountService.findAccount(user_email,user_password);
-        System.out.println(user_email+user_password);
-        System.out.println(result);
+        logger.info(result.toString());
         JSONObject msg =new JSONObject();
         if (result != null){
             msg.put("status",true);
