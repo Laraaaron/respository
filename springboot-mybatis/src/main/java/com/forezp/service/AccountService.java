@@ -22,6 +22,11 @@ public class AccountService  implements AccountMapper{
     }
 
     @Override
+    public user matchinformation(String user_email) {
+        return accountMapper.matchinformation(user_email);
+    }
+
+    @Override
     public user findAccount(String user_email, String user_password) {
         return accountMapper.findAccount(user_email,user_password);
     }

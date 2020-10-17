@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.forezp.entity.Account;
 import com.forezp.entity.user;
 import com.forezp.service.AccountService;
+import com.forezp.utility.LoginStatus;
 import com.sun.deploy.net.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -121,15 +122,23 @@ public class AccountController {
         String user_email=request.getParameter("user_email");
         String user_password=request.getParameter("user_password");
 //        System.out.println("user_name:"+user_name+"user_email:"+user_email+"user_password:"+user_password);
-       int t= accountService.add(user_email,user_password,user_name);
+        user result = accountService.matchinformation(user_email);
         JSONObject msg =new JSONObject();
-       if(t==1) {
-           msg.put("status",true);
-           return msg.toJSONString();
-       }else {
-           msg.put("status",false);
-           return msg.toJSONString();
+        LoginStatus status = new LoginStatus();
+        if (result == null){
+           int t= accountService.add(user_email,user_password,user_name);
+           if(t==1) {
+               msg.put("status",LoginStatus.getStatus_success());
+               return msg.toJSONString();
+           }else {
+               msg.put("status",LoginStatus.getStatus_error());
+               return msg.toJSONString();
+           }
        }
+       else {
+            msg.put("status",LoginStatus.getStatus_fault());
+            return msg.toJSONString();
+        }
 
     }
 

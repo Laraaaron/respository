@@ -24,6 +24,8 @@ public interface AccountMapper {
     @Select("select user_id, user_name from user where user_email = #{user_email} and user_password= #{user_password}")
     user findAccount(@Param("user_email") String user_email, @Param("user_password") String user_password);
 
+    @Select("select * from user where user_email = #{user_email}")
+    user matchinformation(@Param("user_email") String user_email);
 //    @Select("select id, name as name, money as money from account")
 //    List<Account> findAccountList();
 }

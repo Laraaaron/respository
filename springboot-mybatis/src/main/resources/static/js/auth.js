@@ -13,9 +13,15 @@ function tosignup() {
         data: {"user_password":signuppassword,"user_email":signupemail,"user_name":signupname},
         success: function (result) {
             console.log(result);//打印服务端返回的数据(调试用)
-            if (result.resultCode == 200) {
+            if (result.status == 1) {
                 alert("注册成功");
             }
+            if (result.status ==2){
+            	alert("该邮箱已被注册")
+			}
+			else {
+            	alert("注册失败")
+			}
             ;
         },
         error : function() {
