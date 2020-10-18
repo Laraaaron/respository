@@ -35,13 +35,6 @@ public class AccountController {
         return "index";
     }
 
-    @RequestMapping(value = "/article_read")
-    public String ToArticleRead(){
-        /**
-         * 文章详情页
-         */
-        return "read";
-    }
 
     @RequestMapping(value="/signin")
     public String SignIn(){

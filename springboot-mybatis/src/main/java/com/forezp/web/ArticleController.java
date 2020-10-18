@@ -23,6 +23,12 @@ public class ArticleController {
         List<article> article = articleService.findarticle();
         ((JSONObject) result).put("article",article);
         ((JSONObject) result).put("lenth",article.size());
+        List<article> hot_article = articleService.hotarticle();
+        ((JSONObject) result).put("hotarticle",hot_article);
+        ((JSONObject) result).put("hot_lenth",hot_article.size());
+//        for (article value:hot_article){
+//            System.out.println(value);
+//        }
         return result.toJSONString();
     }
 

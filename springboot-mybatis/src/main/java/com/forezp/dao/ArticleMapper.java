@@ -11,4 +11,10 @@ import java.util.List;
 public interface ArticleMapper {
     @Select("select * from article")
     List<article> findarticle();
+
+    @Select("select * from article order by article_comments_like desc limit 10")
+    List<article> hotarticle();
+
+    @Select("select * from article where article_type = #{article_type}")
+    List<article> findbyarticle(@Param("article_type") Integer article_type);
 }

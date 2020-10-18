@@ -17,7 +17,7 @@ public class SpringbootMybatisApplicationTests {
 	AccountService accountService;
 	@Test
 	public void contextLoads() {
-		String result=articleService.findarticle().toString();
+		String result=articleService.hotarticle().toString();
 //		String result = accountService.matchinformation("412332441@qq.com").toString();
 		System.out.println(result);
     }

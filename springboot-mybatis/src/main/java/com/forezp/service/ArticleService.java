@@ -15,4 +15,14 @@ public class ArticleService implements ArticleMapper {
     public List<article> findarticle() {
         return articleMapper.findarticle();
     }
+
+    @Override
+    public List<article> hotarticle() {
+        return articleMapper.hotarticle();
+    }
+
+    @Override
+    public List<article> findbyarticle(Integer article_type) {
+        return articleMapper.findbyarticle(article_type);
+    }
 }

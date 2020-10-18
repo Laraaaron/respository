@@ -10,6 +10,7 @@ window.onload = function () {
         data: {},
         success: function (result) {
             var text = "";
+            var hot_text = "";
             console.log(result.lenth)
             var result_type=""
             for (var i =0;i<result.lenth;i++){
@@ -82,7 +83,19 @@ window.onload = function () {
                     "\t\t\t\t\t\t</section>";
                 text += data;
             }
+            for (var i=0;i<result.hot_lenth;i++){
+
+                var hot_data = "<li> <a href=\"/Blog/article_read/?article_id="+
+                    result.hotarticle[i].article_id
+                    +"\">"+
+                    result.hotarticle[i].article_title
+                    +"</a></li>"
+                hot_text += hot_data;
+
+            }
+            // console.log(hot_text)
             $("#LAY_bloglist").html(text)
+            $("#hot_article").html(hot_text)
         },
         error : function() {
             alert("异常！请重试");
