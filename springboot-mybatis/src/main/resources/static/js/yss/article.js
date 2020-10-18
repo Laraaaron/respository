@@ -1,4 +1,68 @@
-﻿layui.use(['jquery'], function () {
+﻿
+window.onload = function () {
+    NProgress.done();
+    $.ajax({
+        //几个参数需要注意一下
+        type: "POST",//方法类型
+        dataType: "json",//预期服务器返回的数据类型
+        async:false, //不是异步处理
+        url: "/blog/togetarticle" ,
+        data: {},
+        success: function (result) {
+            var text = "";
+            console.log(result.lenth)
+            for (var i =0;i<result.lenth;i++){
+                // console.log(result);//打印服务端返回的数据(调试用)
+                var data = "<section class=\"article-item zoomIn article\">\n" +
+                    "\t\t\t\t\t\t\t<div class=\"fc-flag\">置顶</div>\n" +
+                    "\t\t\t\t\t\t\t<h5 class=\"title\">\n" +
+                    "\t\t\t\t\t\t\t\t<span class=\"fc-blue\">【原创】</span>\n" +
+                    "\t\t\t\t\t\t\t\t<a href=\"/blog/article_read\">" +
+                    result.article[i].article_title +
+                    "</a>\n" +
+                    "\t\t\t\t\t\t\t</h5>\n" +
+                    "\t\t\t\t\t\t\t<div class=\"time\">\n" +
+                    "\t\t\t\t\t\t\t\t<span class=\"day\">1</span>\n" +
+                    "\t\t\t\t\t\t\t\t<span class=\"month fs-18\">7<span class=\"fs-14\">月</span></span>\n" +
+                    "\t\t\t\t\t\t\t\t<span class=\"year fs-18 ml10\">2020</span>\n" +
+                    "\t\t\t\t\t\t\t</div>\n" +
+                    "\t\t\t\t\t\t\t<div class=\"content\">\n" +
+                    "\t\t\t\t\t\t\t\t<a href=\"/blog/article_read\" class=\"cover img-light\">\n" +
+                    "\t\t\t\t\t\t\t\t\t<img src=\"../image/java.jpg\">\n" +
+                    "\t\t\t\t\t\t\t\t</a>\n" +
+                    result.article[i].article_text+
+                    "\t\t\t\t\t\t\t</div>\n" +
+                    "\t\t\t\t\t\t\t<div class=\"read-more\">\n" +
+                    "\t\t\t\t\t\t\t\t<a href=\"/blog/article_read\" class=\"fc-black f-fwb\">继续阅读</a>\n" +
+                    "\t\t\t\t\t\t\t</div>\n" +
+                    "\t\t\t\t\t\t\t<aside class=\"f-oh footer\">\n" +
+                    "\t\t\t\t\t\t\t\t<div class=\"f-fl tags\">\n" +
+                    "\t\t\t\t\t\t\t\t\t<span class=\"fa fa-tags fs-16\"></span>\n" +
+                    "\t\t\t\t\t\t\t\t\t<a class=\"tag\">java</a>\n" +
+                    "\t\t\t\t\t\t\t\t</div>\n" +
+                    "\t\t\t\t\t\t\t\t<div class=\"f-fr\">\n" +
+                    "\t\t\t\t\t\t\t\t\t<span class=\"read\">\n" +
+                    "\t\t\t\t\t\t\t\t\t\t<i class=\"fa fa-eye fs-16\"></i>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t<i class=\"num\">213</i>\n" +
+                    "\t\t\t\t\t\t\t\t\t</span>\n" +
+                    "\t\t\t\t\t\t\t\t\t<span class=\"ml20\">\n" +
+                    "\t\t\t\t\t\t\t\t\t\t<i class=\"fa fa-comments fs-16\"></i>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t<a href=\"javascript:void(0)\" class=\"num fc-grey\">1</a>\n" +
+                    "\t\t\t\t\t\t\t\t\t</span>\n" +
+                    "\t\t\t\t\t\t\t\t</div>\n" +
+                    "\t\t\t\t\t\t\t</aside>\n" +
+                    "\t\t\t\t\t\t</section>";
+                text += data;
+            }
+            $("#LAY_bloglist").html(text)
+        },
+        error : function() {
+            alert("异常！请重试");
+        }
+    });
+};
+
+layui.use(['jquery'], function () {
     var $ = layui.jquery;
     article.Init($);//初始化共用js
    
