@@ -9,7 +9,7 @@ public class article {
     private Integer article_comments_like;
     private Integer article_comments_nums;
     private Integer user_id;
-    private String article_upload_time;
+    private String article_time;
     private Integer article_type;
 
     public Integer getArticle_id() {
@@ -76,12 +76,12 @@ public class article {
         this.user_id = user_id;
     }
 
-    public String getArticle_upload_time() {
-        return article_upload_time;
+    public String getArticle_time() {
+        return article_time;
     }
 
-    public void setArticle_upload_time(String article_upload_time) {
-        this.article_upload_time = article_upload_time;
+    public void setArticle_time(String article_time) {
+        this.article_time = article_time;
     }
 
     public Integer getArticle_type() {
@@ -103,7 +103,7 @@ public class article {
                 ", article_comments_like=" + article_comments_like +
                 ", article_comments_nums=" + article_comments_nums +
                 ", user_id=" + user_id +
-                ", article_upload_time='" + article_upload_time + '\'' +
+                ", article_time='" + article_time + '\'' +
                 ", article_type=" + article_type +
                 '}';
     }
