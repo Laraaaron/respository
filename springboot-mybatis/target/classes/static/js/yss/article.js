@@ -11,7 +11,23 @@ window.onload = function () {
         success: function (result) {
             var text = "";
             console.log(result.lenth)
+            var result_type=""
             for (var i =0;i<result.lenth;i++){
+                if (result.article[i].article_type == 1){
+                     result_type = "Java";
+                }
+                if (result.article[i].article_type == 2){
+                     result_type = "前端";
+                }
+                if (result.article[i].article_type ==3){
+                     result_type = "Python";
+                }
+                if (result.article[i].article_type == 4){
+                     result_type = "PHP";
+                }
+                if (result.article[i].article_type == 5){
+                     result_type = "其他";
+                }
                 // console.log(result);//打印服务端返回的数据(调试用)
                 var data = "<section class=\"article-item zoomIn article\">\n" +
                     "\t\t\t\t\t\t\t<div class=\"fc-flag\">置顶</div>\n" +
@@ -44,16 +60,22 @@ window.onload = function () {
                     "\t\t\t\t\t\t\t<aside class=\"f-oh footer\">\n" +
                     "\t\t\t\t\t\t\t\t<div class=\"f-fl tags\">\n" +
                     "\t\t\t\t\t\t\t\t\t<span class=\"fa fa-tags fs-16\"></span>\n" +
-                    "\t\t\t\t\t\t\t\t\t<a class=\"tag\">java</a>\n" +
+                    "\t\t\t\t\t\t\t\t\t<a class=\"tag\">"+
+                    result_type
+                    +"</a>\n" +
                     "\t\t\t\t\t\t\t\t</div>\n" +
                     "\t\t\t\t\t\t\t\t<div class=\"f-fr\">\n" +
                     "\t\t\t\t\t\t\t\t\t<span class=\"read\">\n" +
                     "\t\t\t\t\t\t\t\t\t\t<i class=\"fa fa-eye fs-16\"></i>\n" +
-                    "\t\t\t\t\t\t\t\t\t\t<i class=\"num\">213</i>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t<i class=\"num\">"+
+                    result.article[i].article_comments_like
+                    +"</i>\n" +
                     "\t\t\t\t\t\t\t\t\t</span>\n" +
                     "\t\t\t\t\t\t\t\t\t<span class=\"ml20\">\n" +
                     "\t\t\t\t\t\t\t\t\t\t<i class=\"fa fa-comments fs-16\"></i>\n" +
-                    "\t\t\t\t\t\t\t\t\t\t<a href=\"javascript:void(0)\" class=\"num fc-grey\">1</a>\n" +
+                    "\t\t\t\t\t\t\t\t\t\t<a href=\"javascript:void(0)\" class=\"num fc-grey\">"+
+                    result.article[i].article_comments_nums
+                    +"</a>\n" +
                     "\t\t\t\t\t\t\t\t\t</span>\n" +
                     "\t\t\t\t\t\t\t\t</div>\n" +
                     "\t\t\t\t\t\t\t</aside>\n" +
