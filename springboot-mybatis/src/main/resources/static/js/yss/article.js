@@ -22,9 +22,15 @@ window.onload = function () {
                     "</a>\n" +
                     "\t\t\t\t\t\t\t</h5>\n" +
                     "\t\t\t\t\t\t\t<div class=\"time\">\n" +
-                    "\t\t\t\t\t\t\t\t<span class=\"day\">1</span>\n" +
-                    "\t\t\t\t\t\t\t\t<span class=\"month fs-18\">7<span class=\"fs-14\">月</span></span>\n" +
-                    "\t\t\t\t\t\t\t\t<span class=\"year fs-18 ml10\">2020</span>\n" +
+                    "\t\t\t\t\t\t\t\t<span class=\"day\">"+
+                    result.article[i].article_time.split("-")[2].split(" ")[0]
+                    +"</span>\n" +
+                    "\t\t\t\t\t\t\t\t<span class=\"month fs-18\">"+
+                    result.article[i].article_time.split("-")[1]
+                    +"<span class=\"fs-14\">月</span></span>\n" +
+                    "\t\t\t\t\t\t\t\t<span class=\"year fs-18 ml10\">"+
+                    result.article[i].article_time.split("-")[0]
+                    +"</span>\n" +
                     "\t\t\t\t\t\t\t</div>\n" +
                     "\t\t\t\t\t\t\t<div class=\"content\">\n" +
                     "\t\t\t\t\t\t\t\t<a href=\"/blog/article_read\" class=\"cover img-light\">\n" +

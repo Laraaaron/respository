@@ -21,9 +21,6 @@ public class ArticleController {
     public String findarticle(){
         JSON result = new JSONObject();
         List<article> article = articleService.findarticle();
-        for (article test:article){
-            System.out.println(test);
-        }
         ((JSONObject) result).put("article",article);
         ((JSONObject) result).put("lenth",article.size());
         return result.toJSONString();
