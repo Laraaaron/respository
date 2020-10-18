@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -18,14 +20,16 @@ public class ArticleController {
     ArticleService articleService;
     @RequestMapping(value = "/togetarticle")
     @ResponseBody
-    public String findarticle(){
+    public String findarticle(HttpServletRequest request){
         JSON result = new JSONObject();
         List<article> article = articleService.findarticle();
+        HttpSession session = request.getSession();
         ((JSONObject) result).put("article",article);
         ((JSONObject) result).put("lenth",article.size());
         List<article> hot_article = articleService.hotarticle();
         ((JSONObject) result).put("hotarticle",hot_article);
         ((JSONObject) result).put("hot_lenth",hot_article.size());
+        ((JSONObject) result).put("username",session.getAttribute("username"));
 //        for (article value:hot_article){
 //            System.out.println(value);
 //        }

@@ -33,7 +33,7 @@
             <div class="page1">
                 <div class="nav wow zoomIn" data-wow-duration="2s">
                     <h1>Welcome</h1>
-                    <p>只要朝着一个方向努力，一切都会变得得心应手</p>
+                    <p id="jitang"></p>
                     <a class="layui-btn layui-btn-normal" style="margin-top: 20px" href="/blog/article_page">Enter Blog</a>
                 </div>
                 <a class="next wow fadeInUp" data-wow-duration="2s" id="next"></a>
@@ -218,5 +218,11 @@
     <script src="../layui/layui.js"></script>
     <script src="../js/wow.min.js"></script>
     <script src="../js/index.js"></script>
+    <script src="../js/yss/JiTang.js"></script>
+    <script>
+        window.onload = function () {
+            jitang();
+        };
+    </script>
 </body>
 </html>
