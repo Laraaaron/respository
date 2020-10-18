@@ -2,7 +2,6 @@ package com.forezp.web;
 
 import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.databind.util.JSONPObject;
-import com.forezp.entity.Account;
 import com.forezp.entity.user;
 import com.forezp.service.AccountService;
 import com.forezp.utility.LoginStatus;
@@ -34,14 +33,6 @@ public class AccountController {
          * 首页
          */
         return "index";
-    }
-
-    @RequestMapping(value = "/article_page")
-    public String ToArticlePage(){
-        /**
-         * 文章展示页
-         */
-        return "article";
     }
 
     @RequestMapping(value = "/article_read")

@@ -1,6 +1,5 @@
 package com.forezp.dao;
 
-import com.forezp.entity.Account;
 import com.forezp.entity.user;
 import org.apache.ibatis.annotations.*;
 
