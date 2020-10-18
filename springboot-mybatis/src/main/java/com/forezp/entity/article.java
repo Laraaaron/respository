@@ -2,14 +2,14 @@ package com.forezp.entity;
 
 public class article {
     private Integer article_id;
-    private String artcle_title;
-    private String artcle_cover_img;
+    private String article_title;
+    private String article_cover_img;
     private String article_text_img;
     private String article_text;
     private Integer article_comments_like;
-    private Integer article_comments;
+    private Integer article_comments_nums;
     private Integer user_id;
-    private String article_upload;
+    private String article_upload_time;
     private Integer article_type;
 
     public Integer getArticle_id() {
@@ -20,20 +20,20 @@ public class article {
         this.article_id = article_id;
     }
 
-    public String getArtcle_title() {
-        return artcle_title;
+    public String getArticle_title() {
+        return article_title;
     }
 
-    public void setArtcle_title(String artcle_title) {
-        this.artcle_title = artcle_title;
+    public void setArticle_title(String article_title) {
+        this.article_title = article_title;
     }
 
-    public String getArtcle_cover_img() {
-        return artcle_cover_img;
+    public String getArticle_cover_img() {
+        return article_cover_img;
     }
 
-    public void setArtcle_cover_img(String artcle_cover_img) {
-        this.artcle_cover_img = artcle_cover_img;
+    public void setArticle_cover_img(String article_cover_img) {
+        this.article_cover_img = article_cover_img;
     }
 
     public String getArticle_text_img() {
@@ -60,12 +60,12 @@ public class article {
         this.article_comments_like = article_comments_like;
     }
 
-    public Integer getArticle_comments() {
-        return article_comments;
+    public Integer getArticle_comments_nums() {
+        return article_comments_nums;
     }
 
-    public void setArticle_comments(Integer article_comments) {
-        this.article_comments = article_comments;
+    public void setArticle_comments_nums(Integer article_comments_nums) {
+        this.article_comments_nums = article_comments_nums;
     }
 
     public Integer getUser_id() {
@@ -76,12 +76,12 @@ public class article {
         this.user_id = user_id;
     }
 
-    public String getArticle_upload() {
-        return article_upload;
+    public String getArticle_upload_time() {
+        return article_upload_time;
     }
 
-    public void setArticle_upload(String article_upload) {
-        this.article_upload = article_upload;
+    public void setArticle_upload_time(String article_upload_time) {
+        this.article_upload_time = article_upload_time;
     }
 
     public Integer getArticle_type() {
@@ -96,14 +96,14 @@ public class article {
     public String toString() {
         return "article{" +
                 "article_id=" + article_id +
-                ", artcle_title='" + artcle_title + '\'' +
-                ", artcle_cover_img='" + artcle_cover_img + '\'' +
+                ", article_title='" + article_title + '\'' +
+                ", article_cover_img='" + article_cover_img + '\'' +
                 ", article_text_img='" + article_text_img + '\'' +
                 ", article_text='" + article_text + '\'' +
                 ", article_comments_like=" + article_comments_like +
-                ", article_comments=" + article_comments +
+                ", article_comments_nums=" + article_comments_nums +
                 ", user_id=" + user_id +
-                ", article_upload='" + article_upload + '\'' +
+                ", article_upload_time='" + article_upload_time + '\'' +
                 ", article_type=" + article_type +
                 '}';
     }
