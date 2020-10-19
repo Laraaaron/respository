@@ -34,7 +34,9 @@ window.onload = function () {
                     "\t\t\t\t\t\t\t<div class=\"fc-flag\">置顶</div>\n" +
                     "\t\t\t\t\t\t\t<h5 class=\"title\">\n" +
                     "\t\t\t\t\t\t\t\t<span class=\"fc-blue\">【原创】</span>\n" +
-                    "\t\t\t\t\t\t\t\t<a href=\"/blog/article_read\">" +
+                    "\t\t\t\t\t\t\t\t<a href=\"/blog/article_read?article_id="+
+                    result.article[i].article_id
+                    +"\">" +
                     result.article[i].article_title +
                     "</a>\n" +
                     "\t\t\t\t\t\t\t</h5>\n" +
@@ -50,7 +52,9 @@ window.onload = function () {
                     +"</span>\n" +
                     "\t\t\t\t\t\t\t</div>\n" +
                     "\t\t\t\t\t\t\t<div class=\"content\">\n" +
-                    "\t\t\t\t\t\t\t\t<a href=\"/blog/article_read\" class=\"cover img-light\">\n" +
+                    "\t\t\t\t\t\t\t\t<a href=\"/blog/article_read?article_id="+
+                    result.article[i].article_id
+                    +"\" class=\"cover img-light\">\n" +
                     "\t\t\t\t\t\t\t\t\t<img src=\"../image/java.jpg\">\n" +
                     "\t\t\t\t\t\t\t\t</a>\n" +
                     result.article[i].article_text+
@@ -85,7 +89,7 @@ window.onload = function () {
             }
             for (var i=0;i<result.hot_lenth;i++){
 
-                var hot_data = "<li> <a href=\"/Blog/article_read/?article_id="+
+                var hot_data = "<li> <a href=\"/blog/article_read?article_id="+
                     result.hotarticle[i].article_id
                     +"\">"+
                     result.hotarticle[i].article_title
@@ -141,7 +145,9 @@ function seach() {
                     "\t\t\t\t\t\t\t<div class=\"fc-flag\">置顶</div>\n" +
                     "\t\t\t\t\t\t\t<h5 class=\"title\">\n" +
                     "\t\t\t\t\t\t\t\t<span class=\"fc-blue\">【原创】</span>\n" +
-                    "\t\t\t\t\t\t\t\t<a href=\"/blog/article_read\">" +
+                    "\t\t\t\t\t\t\t\t<a href=\"/blog/article_read?article_id="+
+                    result.article[i].article_id
+                    +"\">" +
                     result.article[i].article_title +
                     "</a>\n" +
                     "\t\t\t\t\t\t\t</h5>\n" +
@@ -157,7 +163,9 @@ function seach() {
                     +"</span>\n" +
                     "\t\t\t\t\t\t\t</div>\n" +
                     "\t\t\t\t\t\t\t<div class=\"content\">\n" +
-                    "\t\t\t\t\t\t\t\t<a href=\"/blog/article_read\" class=\"cover img-light\">\n" +
+                    "\t\t\t\t\t\t\t\t<a href=\"/blog/article_read?article_id="+
+                    result.article[i].article_id
+                    +"\" class=\"cover img-light\">\n" +
                     "\t\t\t\t\t\t\t\t\t<img src=\"../image/java.jpg\">\n" +
                     "\t\t\t\t\t\t\t\t</a>\n" +
                     result.article[i].article_text+
