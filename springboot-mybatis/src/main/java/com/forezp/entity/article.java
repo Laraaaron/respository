@@ -11,6 +11,7 @@ public class article {
     private Integer user_id;
     private String article_time;
     private Integer article_type;
+    private String user_name;
 
     public Integer getArticle_id() {
         return article_id;
@@ -92,6 +93,14 @@ public class article {
         this.article_type = article_type;
     }
 
+    public String getUser_name() {
+        return user_name;
+    }
+
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
+    }
+
     @Override
     public String toString() {
         return "article{" +
@@ -105,6 +114,7 @@ public class article {
                 ", user_id=" + user_id +
                 ", article_time='" + article_time + '\'' +
                 ", article_type=" + article_type +
+                ", user_name='" + user_name + '\'' +
                 '}';
     }
 }
