@@ -6,6 +6,7 @@ import com.forezp.entity.article;
 import com.forezp.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -38,10 +39,19 @@ public class ArticleController {
     }
 
     @RequestMapping(value = "/article_page")
-    public String ToArticlePage(){
+    public String ToArticlePage(HttpServletRequest request,Model model){
         /**
          * 文章展示页
          */
+        HttpSession session = request.getSession();
+        Object username = session.getAttribute("username");
+        if (username !=null){
+            model.addAttribute("name","Hello,"+username.toString());
+        }
+        else {
+            model.addAttribute("name","");
+        }
+
         return "article";
     }
 

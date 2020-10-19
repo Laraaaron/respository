@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -20,7 +20,7 @@
     <header class="gird-header">
         <div class="header-fixed">
             <div class="header-inner">
-                <a href="javascript:void(0)" class="header-logo" id="logo">Mr.liu</a>
+                <a href="javascript:void(0)" class="header-logo" id="logo" th:text="  ${name} "></a>
                 <nav class="nav" id="nav">
                     <ul>
                         <li><a href="/blog/home">首页</a></li>

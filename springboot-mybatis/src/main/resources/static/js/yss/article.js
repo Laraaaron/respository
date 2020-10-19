@@ -100,9 +100,6 @@ window.onload = function () {
             // console.log(hot_text)
             $("#LAY_bloglist").html(text)
             $("#hot_article").html(hot_text)
-            if (result !=null){
-                $("#logo").html(result.username)
-            }
         },
         error : function() {
             alert("异常！请重试");
