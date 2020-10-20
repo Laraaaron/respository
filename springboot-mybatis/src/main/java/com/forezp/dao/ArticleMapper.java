@@ -17,4 +17,10 @@ public interface ArticleMapper {
 
     @Select("select * from article where article_type = #{article_type}")
     List<article> findbyarticle(@Param("article_type") Integer article_type);
+
+    @Select("select * from article where article_title like concat('%',#{article_title},'%')")
+    List<article> findbyarticle_title(@Param("article_title") String article_title);
+
+    @Select("select a.*,b.user_name from article a join user b on a.user_id = b.user_id where article_id=#{article_id}")
+    List<article> findbyarticle_id(@Param("article_id") Integer article_id);
 }

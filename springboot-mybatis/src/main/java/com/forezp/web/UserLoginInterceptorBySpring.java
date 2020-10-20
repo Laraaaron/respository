@@ -2,6 +2,7 @@ package com.forezp.web;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
@@ -12,10 +13,11 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 public class UserLoginInterceptorBySpring extends HandlerInterceptorAdapter{
     // 在业务处理器处理请求之前被调用
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception{
+        Logger logger = Logger.getGlobal();
         if("GET".equalsIgnoreCase(request.getMethod())){
             //RequestUtil.saveRequest();
         }
-        System.out.println("你已经进入拦截路由咯～");
+        logger.info("你已经进入拦截路由咯～");
         String requestUri = request.getRequestURI();
         String contextPath = request.getContextPath();
 //        String url = requestUri.substring(contextPath.length());
@@ -23,7 +25,7 @@ public class UserLoginInterceptorBySpring extends HandlerInterceptorAdapter{
 //        System.out.println("contextPath" + contextPath);
 //        System.out.println("url" + url);
         String username = (String) request.getSession().getAttribute("username");
-        System.out.println(username);
+//        System.out.println(username);
         if(null == username){
             // 跳转到登录页面
             request.getRequestDispatcher("/blog/signin").forward(request, response);

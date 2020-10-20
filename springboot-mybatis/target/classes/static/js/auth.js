@@ -3,7 +3,7 @@ function tosignup() {
     var signupname = $('#signupname').val();
     var signupemail = $('#signupemail').val();
     var signuppassword = $('#signuppassword').val();
-    alert(signupname)
+    // alert(signupname)
     $.ajax({
         //几个参数需要注意一下
         type: "POST",//方法类型
@@ -15,14 +15,15 @@ function tosignup() {
             console.log(result);//打印服务端返回的数据(调试用)
             if (result.status == 1) {
                 alert("注册成功");
+                window.location.href = "/blog/signin";
             }
             if (result.status ==2){
             	alert("该邮箱已被注册")
 			}
-			else {
+			if (result.status ==3) {
             	alert("注册失败")
 			}
-            ;
+
         },
         error : function() {
             alert("异常！请重试");
@@ -45,12 +46,8 @@ function tosignin() {
             if (result.status !=false){
                 url = window.location.pathname;
                 url = url.substring(url.lastIndexOf('/') + 1, url.length);
-                if (url=="article_read"){
-                	window.location.href = "/blog/article_read"
-				}
-				else {
                     window.location.href = "/blog/article_page";
-                }
+
 
             }
             else {
