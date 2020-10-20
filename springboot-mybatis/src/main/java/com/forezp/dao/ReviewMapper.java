@@ -10,7 +10,7 @@ import java.util.List;
 
 @Mapper
 public interface ReviewMapper {
-    @Select("select a*,b.user_name from review a join user b on a.user_id =b.user_id and a.article_id=#{article_id} ")
+    @Select("select a.*,b.user_name from review a join user b on a.user_id =b.user_id and a.article_id=#{article_id} ")
     List<review> findreview(@Param("article_id") Integer article_id);
 
     @Insert("insert into review(article_reviews, user_id,article_id,article_time) values(#{article_reviews}, #{user_id},#{article_id},#{article_time})")
