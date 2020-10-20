@@ -1,6 +1,8 @@
 package com.forezp.web;
 
+import com.forezp.dao.ReviewMapper;
 import com.forezp.entity.article;
+import com.forezp.entity.review;
 import com.forezp.service.ArticleService;
 import com.sun.org.glassfish.gmbal.ParameterNames;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,8 @@ import java.util.logging.Logger;
 public class ArticleReadController {
     @Autowired
     ArticleService articleService;
+    @Autowired
+    ReviewMapper reviewMapper;
     @RequestMapping(value = "/article_read",method = RequestMethod.GET)
     public String ToArticleRead(HttpServletRequest request,Model model){
         /**
@@ -44,7 +48,8 @@ public class ArticleReadController {
         else {
             model.addAttribute("name","");
         }
-
+        List<review> reviews=reviewMapper.findreview();
+        model.addAttribute("reviews",reviews);
         return "read";
     }
 
