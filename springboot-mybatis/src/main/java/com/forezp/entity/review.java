@@ -1,6 +1,8 @@
 package com.forezp.entity;
 
 public class review {
+    private InternalError review_id;
+    private String article_time;
     private String article_reviews;
     private Integer user_id;
     private Integer article_id;
@@ -38,10 +40,28 @@ public class review {
         this.user_name = user_name;
     }
 
+    public InternalError getReview_id() {
+        return review_id;
+    }
+
+    public void setReview_id(InternalError review_id) {
+        this.review_id = review_id;
+    }
+
+    public String getArticle_time() {
+        return article_time;
+    }
+
+    public void setArticle_time(String article_time) {
+        this.article_time = article_time;
+    }
+
     @Override
     public String toString() {
         return "review{" +
-                "article_reviews='" + article_reviews + '\'' +
+                "review_id=" + review_id +
+                ", article_time='" + article_time + '\'' +
+                ", article_reviews='" + article_reviews + '\'' +
                 ", user_id=" + user_id +
                 ", article_id=" + article_id +
                 ", user_name='" + user_name + '\'' +

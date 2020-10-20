@@ -12,12 +12,12 @@ public class ReviewService implements ReviewMapper {
     @Autowired
     ReviewMapper reviewMapper;
     @Override
-    public List<review> findreview() {
-        return reviewMapper.findreview();
+    public List<review> findreview(Integer article_id) {
+        return reviewMapper.findreview(article_id);
     }
 
     @Override
-    public int addreview(String article_reviews, Integer user_id, Integer article_id) {
-        return reviewMapper.addreview(article_reviews,user_id,article_id);
+    public int addreview(String article_reviews, Integer user_id, Integer article_id,String article_time) {
+        return reviewMapper.addreview(article_reviews,user_id,article_id,article_time);
     }
 }

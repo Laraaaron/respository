@@ -48,7 +48,7 @@ public class ArticleReadController {
         else {
             model.addAttribute("name","");
         }
-        List<review> reviews=reviewMapper.findreview();
+        List<review> reviews=reviewMapper.findreview(Integer.valueOf(id));
         model.addAttribute("reviews",reviews);
         return "read";
     }
