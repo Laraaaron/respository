@@ -6,14 +6,23 @@ import com.forezp.entity.user;
 import com.forezp.service.AccountService;
 import com.forezp.utility.LoginStatus;
 import com.sun.deploy.net.HttpResponse;
+import me.zhyd.oauth.model.AuthCallback;
+import me.zhyd.oauth.model.AuthResponse;
+import me.zhyd.oauth.model.AuthUser;
+import me.zhyd.oauth.request.AuthGithubRequest;
+import me.zhyd.oauth.request.AuthRequest;
+import me.zhyd.oauth.utils.AuthStateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import me.zhyd.oauth.config.AuthConfig;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -126,6 +135,57 @@ public class AccountController {
         }
 
     }
+
+    @RequestMapping("/render/{source}")
+    public void renderAuth(HttpServletResponse response,@PathVariable String source) throws IOException {
+        String clientId="";
+        String clientSecret="";
+        String redirectUri="";
+        if (source=="github"){
+            clientId = LoginStatus.getGithub_clientId();
+            clientSecret = LoginStatus.getGithub_clientSecret();
+            redirectUri = LoginStatus.getGithub_redirectUri();
+        }
+        else if (source=="dingding"){
+                clientId = LoginStatus.getDingding_clientId();
+                clientSecret = LoginStatus.getDingding_clientSecret();
+                redirectUri = LoginStatus.getDingding_redirectUri();
+        }
+        AuthRequest authRequest = getAuthRequest(clientId,clientSecret,redirectUri);
+        response.sendRedirect(authRequest.authorize(AuthStateUtils.createState()));
+    }
+
+    @RequestMapping("/callback/{source}")
+    public void login(AuthCallback callback,HttpServletRequest request,HttpServletResponse response,@PathVariable String source) throws IOException {
+        String clientId="";
+        String clientSecret="";
+        String redirectUri="";
+        if (source=="github"){
+            clientId = LoginStatus.getGithub_clientId();
+            clientSecret = LoginStatus.getGithub_clientSecret();
+            redirectUri = LoginStatus.getGithub_redirectUri();
+        }
+        else if (source=="dingding"){
+            clientId = LoginStatus.getDingding_clientId();
+            clientSecret = LoginStatus.getDingding_clientSecret();
+            redirectUri = LoginStatus.getDingding_redirectUri();
+        }
+        AuthRequest authRequest = getAuthRequest(clientId,clientSecret,redirectUri);
+        AuthResponse<AuthUser> authResponse = authRequest.login(callback);
+        AuthUser user = authResponse.getData();
+        HttpSession session = request.getSession();
+        session.setAttribute("username",user.getUsername());
+        response.sendRedirect("/blog/article_page");
+    }
+
+    private AuthRequest getAuthRequest(String clientId,String clientSecret,String redirectUri) {
+        return new AuthGithubRequest(AuthConfig.builder()
+                .clientId(clientId)
+                .clientSecret(clientSecret)
+                .redirectUri(redirectUri)
+                .build());
+    }
+
 
 
 
