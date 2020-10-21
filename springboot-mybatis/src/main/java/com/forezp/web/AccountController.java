@@ -9,6 +9,7 @@ import com.sun.deploy.net.HttpResponse;
 import me.zhyd.oauth.model.AuthCallback;
 import me.zhyd.oauth.model.AuthResponse;
 import me.zhyd.oauth.model.AuthUser;
+import me.zhyd.oauth.request.AuthDingTalkRequest;
 import me.zhyd.oauth.request.AuthGithubRequest;
 import me.zhyd.oauth.request.AuthRequest;
 import me.zhyd.oauth.utils.AuthStateUtils;
@@ -138,48 +139,46 @@ public class AccountController {
 
     @RequestMapping("/render/{source}")
     public void renderAuth(HttpServletResponse response,@PathVariable String source) throws IOException {
-        String clientId="";
-        String clientSecret="";
-        String redirectUri="";
-        if (source=="github"){
-            clientId = LoginStatus.getGithub_clientId();
-            clientSecret = LoginStatus.getGithub_clientSecret();
-            redirectUri = LoginStatus.getGithub_redirectUri();
+        if (source.equals("github")){
+            AuthRequest authRequest = getAuthRequest(LoginStatus.getGithub_clientId(),LoginStatus.getGithub_clientSecret(),LoginStatus.getGithub_redirectUri());
+            response.sendRedirect(authRequest.authorize(AuthStateUtils.createState()));
         }
-        else if (source=="dingding"){
-                clientId = LoginStatus.getDingding_clientId();
-                clientSecret = LoginStatus.getDingding_clientSecret();
-                redirectUri = LoginStatus.getDingding_redirectUri();
+        else if (source.equals("dingding")){
+            AuthRequest authRequest = getAuthRequestdingtalk(LoginStatus.getDingding_clientId(),LoginStatus.getDingding_clientSecret(),LoginStatus.getDingding_redirectUri());
+            response.sendRedirect(authRequest.authorize(AuthStateUtils.createState()));
         }
-        AuthRequest authRequest = getAuthRequest(clientId,clientSecret,redirectUri);
-        response.sendRedirect(authRequest.authorize(AuthStateUtils.createState()));
     }
 
     @RequestMapping("/callback/{source}")
     public void login(AuthCallback callback,HttpServletRequest request,HttpServletResponse response,@PathVariable String source) throws IOException {
-        String clientId="";
-        String clientSecret="";
-        String redirectUri="";
-        if (source=="github"){
-            clientId = LoginStatus.getGithub_clientId();
-            clientSecret = LoginStatus.getGithub_clientSecret();
-            redirectUri = LoginStatus.getGithub_redirectUri();
+        if (source.equals("github")){
+            AuthRequest authRequest = getAuthRequest(LoginStatus.getGithub_clientId(),LoginStatus.getGithub_clientSecret(),LoginStatus.getGithub_redirectUri());
+            AuthResponse<AuthUser> authResponse = authRequest.login(callback);
+            AuthUser user = authResponse.getData();
+            HttpSession session = request.getSession();
+            session.setAttribute("username",user.getUsername());
+            response.sendRedirect("/blog/article_page");
         }
-        else if (source=="dingding"){
-            clientId = LoginStatus.getDingding_clientId();
-            clientSecret = LoginStatus.getDingding_clientSecret();
-            redirectUri = LoginStatus.getDingding_redirectUri();
+        else if (source.equals("dingtalk")){
+            AuthRequest authRequest = getAuthRequestdingtalk(LoginStatus.getDingding_clientId(),LoginStatus.getDingding_clientSecret(),LoginStatus.getDingding_redirectUri());
+            AuthResponse<AuthUser> authResponse = authRequest.login(callback);
+            AuthUser user = authResponse.getData();
+            HttpSession session = request.getSession();
+            session.setAttribute("username",user.getUsername());
+            response.sendRedirect("/blog/article_page");
         }
-        AuthRequest authRequest = getAuthRequest(clientId,clientSecret,redirectUri);
-        AuthResponse<AuthUser> authResponse = authRequest.login(callback);
-        AuthUser user = authResponse.getData();
-        HttpSession session = request.getSession();
-        session.setAttribute("username",user.getUsername());
-        response.sendRedirect("/blog/article_page");
+
     }
 
     private AuthRequest getAuthRequest(String clientId,String clientSecret,String redirectUri) {
         return new AuthGithubRequest(AuthConfig.builder()
+                .clientId(clientId)
+                .clientSecret(clientSecret)
+                .redirectUri(redirectUri)
+                .build());
+    }
+    private AuthRequest getAuthRequestdingtalk(String clientId,String clientSecret,String redirectUri) {
+        return new AuthDingTalkRequest(AuthConfig.builder()
                 .clientId(clientId)
                 .clientSecret(clientSecret)
                 .redirectUri(redirectUri)
