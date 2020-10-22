@@ -155,6 +155,9 @@ public class AccountController {
             AuthRequest authRequest = getAuthRequest(LoginStatus.getGithub_clientId(),LoginStatus.getGithub_clientSecret(),LoginStatus.getGithub_redirectUri());
             AuthResponse<AuthUser> authResponse = authRequest.login(callback);
             AuthUser user = authResponse.getData();
+            if (accountService.matchinformation(user.getEmail())==null){
+                accountService.add(user.getEmail(),"123456",user.getUsername());
+            }
             HttpSession session = request.getSession();
             session.setAttribute("username",user.getUsername());
             response.sendRedirect("/blog/article_page");
@@ -163,6 +166,9 @@ public class AccountController {
             AuthRequest authRequest = getAuthRequestdingtalk(LoginStatus.getDingding_clientId(),LoginStatus.getDingding_clientSecret(),LoginStatus.getDingding_redirectUri());
             AuthResponse<AuthUser> authResponse = authRequest.login(callback);
             AuthUser user = authResponse.getData();
+            if (accountService.matchinformation(user.getUuid()+"@163.com")==null){
+                accountService.add(user.getUuid()+"@163.com","123456",user.getUsername());
+            }
             HttpSession session = request.getSession();
             session.setAttribute("username",user.getUsername());
             response.sendRedirect("/blog/article_page");
