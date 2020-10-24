@@ -155,8 +155,8 @@ public class AccountController {
             AuthRequest authRequest = getAuthRequest(LoginStatus.getGithub_clientId(),LoginStatus.getGithub_clientSecret(),LoginStatus.getGithub_redirectUri());
             AuthResponse<AuthUser> authResponse = authRequest.login(callback);
             AuthUser user = authResponse.getData();
-            if (accountService.matchinformation(user.getEmail())==null){
-                accountService.add(user.getEmail(),"123456",user.getUsername());
+            if (accountService.matchinformation(user.getUuid())==null){
+                accountService.add(user.getUuid(),"123456",user.getUsername());
             }
             HttpSession session = request.getSession();
             session.setAttribute("username",user.getUsername());
