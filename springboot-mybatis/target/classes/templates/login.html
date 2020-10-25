@@ -10,7 +10,7 @@
 <body style="height:100vh;
     padding:0;
     background-color:#151515;
-    background-image:url(https://w.wallhaven.cc/full/ox/wallhaven-oxxw29.jpg);
+    background-image:url(../image/wallhaven.jpg);
     background-position:center;
     background-attachment:fixed;
     background-size:100% 100%">
@@ -51,15 +51,15 @@
 						<p>Let's create your account</p>
 						<div class="lowin-group">
 							<label>Name</label>
-							<input type="text" name="name" autocomplete="name" class="lowin-input" id="signupname">
+							<input type="text" name="name" autocomplete="name" class="lowin-input" id="signupname" onblur="checkUsername()">
 						</div>
 						<div class="lowin-group">
 							<label>Email</label>
-							<input type="email" autocomplete="email" name="email" class="lowin-input" id="signupemail">
+							<input type="email" autocomplete="email" name="email" class="lowin-input" id="signupemail" onblur="checkEmail()">
 						</div>
 						<div class="lowin-group">
 							<label>Password</label>
-							<input type="password" name="password" autocomplete="current-password" class="lowin-input" id="signuppassword">
+							<input type="password" name="password" autocomplete="current-password" class="lowin-input" id="signuppassword" onblur="checkPassword()">
 						</div>
 						<button class="lowin-btn"  type="button" onclick="tosignup()">
 							Sign Up

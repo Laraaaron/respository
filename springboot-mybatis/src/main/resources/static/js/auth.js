@@ -2,6 +2,7 @@
 function checkUsername() {
     //1.获取用户名值
     var username = $("#signupname").val();
+    // alert("进入效益")
     //2.定义正则
     var reg_username = /^\w{8,20}$/;
 
@@ -65,9 +66,9 @@ function tosignup() {
 
 
     //当某一个组件失去焦点是，调用对应的校验方法
-    $("#signupname").blur(checkUsername);
-    $("#signupemail").blur(checkEmail);
-    $("#signuppassword").blur(checkPassword);
+    // $("#signupname").blur(checkUsername);
+    // $("#signupemail").blur(checkEmail);
+    // $("#signuppassword").blur(checkPassword);
     // alert(signupname)
 
     if (checkUsername() && checkPassword() && checkEmail()) {
