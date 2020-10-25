@@ -17,7 +17,7 @@ public class AccountService  implements AccountMapper{
     private AccountMapper accountMapper;
 
     @Override
-    public int add(String user_email, String user_password, String user_name) {
+    public user add(String user_email, String user_password, String user_name) {
         return accountMapper.add(user_email,user_password,user_name);
     }
 

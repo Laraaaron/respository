@@ -93,7 +93,7 @@
                                 <!--</ul>-->
                             <!--</div>-->
                             <!--<div class="f-cb"></div>-->
-                            <div class="" style="border-top: 0px solid #e1e2e0; padding-top: 20px;" th:each="value:${reviews}">
+                            <div id="reviews" class="" style="border-top: 0px solid #e1e2e0; padding-top: 20px;" th:each="value:${reviews}">
                                 <p th:text="${value.getArticle_reviews()}"></p>
                             </div>
                             <fieldset class="layui-elem-field layui-field-title">
@@ -101,9 +101,9 @@
                                 <div class="layui-field-box">
                                     <div class="leavemessage" style="text-align:initial">
                                         <form class="layui-form blog-editor" action="">
-                                            <input type="" name="articleid" id="articleid" value="说点什么吧～" style="width: 120px;height: 40px">
+<!--                                            <input type="" name="articleid" id="articleid" value="说点什么吧～" style="width: 120px;height: 40px">-->
                                             <div class="layui-form-item">
-                                                <textarea name="editorContent" lay-verify="content" id="remarkEditor" placeholder="请输入内容" class="layui-textarea layui-hide"></textarea>
+                                                <textarea name="editorContent" lay-verify="content" id="remarkEditor" placeholder="请输入内容" class="layui-textarea"></textarea>
                                             </div>
                                             <div class="layui-form-item">
                                                 <button class="layui-btn" lay-submit="formLeaveMessage" lay-filter="formLeaveMessage">提交留言</button>

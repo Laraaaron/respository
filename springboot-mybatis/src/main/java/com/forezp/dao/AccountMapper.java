@@ -12,7 +12,7 @@ import java.util.List;
 public interface AccountMapper {
 
     @Insert("insert into user(user_email, user_password,user_name) values(#{user_email}, #{user_password},#{user_name})")
-    int add(@Param("user_email") String user_email, @Param("user_password") String user_password,@Param("user_name") String user_name);
+    user add(@Param("user_email") String user_email, @Param("user_password") String user_password,@Param("user_name") String user_name);
 
 //    @Update("update account set name = #{name}, money = #{money} where id = #{id}")
 //    int update(@Param("name") String name, @Param("money") double money, @Param("id") int  id);

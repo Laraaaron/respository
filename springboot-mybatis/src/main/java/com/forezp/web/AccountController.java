@@ -76,6 +76,7 @@ public class AccountController {
             msg.put("user_name",result.getUser_name());
             HttpSession session = request.getSession();
             session.setAttribute("username",result.getUser_name());
+            session.setAttribute("user_id",result.getUser_id());
             return msg.toJSONString();
         }
         else {
@@ -121,8 +122,8 @@ public class AccountController {
         JSONObject msg =new JSONObject();
         LoginStatus status = new LoginStatus();
         if (result == null){
-           int t= accountService.add(user_email,user_password,user_name);
-           if(t==1) {
+           user t= accountService.add(user_email,user_password,user_name);
+           if(t!=null) {
                msg.put("status",LoginStatus.getStatus_success());
                return msg.toJSONString();
            }else {
@@ -151,15 +152,17 @@ public class AccountController {
 
     @RequestMapping("/callback/{source}")
     public void login(AuthCallback callback,HttpServletRequest request,HttpServletResponse response,@PathVariable String source) throws IOException {
+        user result = null;
         if (source.equals("github")){
             AuthRequest authRequest = getAuthRequest(LoginStatus.getGithub_clientId(),LoginStatus.getGithub_clientSecret(),LoginStatus.getGithub_redirectUri());
             AuthResponse<AuthUser> authResponse = authRequest.login(callback);
             AuthUser user = authResponse.getData();
             if (accountService.matchinformation(user.getUuid())==null){
-                accountService.add(user.getUuid(),"123456",user.getUsername());
+                result=accountService.add(user.getUuid(),"123456",user.getUsername());
             }
             HttpSession session = request.getSession();
             session.setAttribute("username",user.getUsername());
+            session.setAttribute("user_id", result.getUser_id());
             response.sendRedirect("/blog/article_page");
         }
         else if (source.equals("dingtalk")){
@@ -167,10 +170,11 @@ public class AccountController {
             AuthResponse<AuthUser> authResponse = authRequest.login(callback);
             AuthUser user = authResponse.getData();
             if (accountService.matchinformation(user.getUuid()+"@163.com")==null){
-                accountService.add(user.getUuid()+"@163.com","123456",user.getUsername());
+                result=accountService.add(user.getUuid()+"@163.com","123456",user.getUsername());
             }
             HttpSession session = request.getSession();
             session.setAttribute("username",user.getUsername());
+            session.setAttribute("user_id", result.getUser_id());
             response.sendRedirect("/blog/article_page");
         }
 

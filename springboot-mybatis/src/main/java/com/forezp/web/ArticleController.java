@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -66,5 +68,30 @@ public class ArticleController {
         result.put("article",articles);
         result.put("lenth",articles.size());
         return result.toJSONString();
+    }
+
+    @RequestMapping("/write")
+    public String write_home(){
+        return "diary";
+    }
+
+    @RequestMapping("/addarticle")
+    public String addArticle(HttpServletRequest request){
+        String article_type = request.getParameter("type");
+        String article_text = request.getParameter("text");
+        String article_title = request.getParameter("title");
+        HttpSession session = request.getSession();
+        Integer user_id=Integer.valueOf(session.getAttribute("user_id").toString());
+        Date date = new Date();
+        String dateFormat= new SimpleDateFormat("yyyy-MM-dd :hh:mm:ss").toString();
+        int result=articleService.addArticle(article_title,article_text,user_id,dateFormat,Integer.valueOf(article_type));
+        JSONObject msg = new JSONObject();
+        if (result==1){
+            msg.put("status",true);
+        }
+        else {
+            msg.put("status",false);
+        }
+        return msg.toJSONString();
     }
 }

@@ -35,4 +35,9 @@ public class ArticleService implements ArticleMapper {
     public List<article> findbyarticle_id(Integer article_id) {
         return articleMapper.findbyarticle_id(article_id);
     }
+
+    @Override
+    public int addArticle(String article_title, String article_text, Integer user_id, String article_time, Integer article_type) {
+        return articleMapper.addArticle(article_title,article_text,user_id,article_time,article_type);
+    }
 }
