@@ -103,8 +103,31 @@
         function sendarticle() {
             var text = editor.txt.html()
             var type = $("#type").val()
-            console.log(text)
-            console.log(type)
+            var title ="测试"
+            // console.log(text)
+            // console.log(type)
+            $.ajax({
+                //几个参数需要注意一下
+                type: "POST",//方法类型
+                dataType: "json",//预期服务器返回的数据类型
+                async: false, //不是异步处理
+                url: "/blog/addarticle",
+                data: {"text": text, "type": type, "title": title},
+                success: function (result) {
+                    console.log(result);//打印服务端返回的数据(调试用)
+                    if (result.status == true) {
+                        alert("添加成功");
+                        window.location.href = "/blog/article_page";
+                    }
+                    if (result.status == false) {
+                        alert("添加失败，请重试")
+                    }
+
+                },
+                error: function () {
+                    alert("异常！请重试");
+                }
+            });
         }
     </script>
 

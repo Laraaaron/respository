@@ -76,6 +76,7 @@ public class ArticleController {
     }
 
     @RequestMapping("/addarticle")
+    @ResponseBody
     public String addArticle(HttpServletRequest request){
         String article_type = request.getParameter("type");
         String article_text = request.getParameter("text");
@@ -83,7 +84,7 @@ public class ArticleController {
         HttpSession session = request.getSession();
         Integer user_id=Integer.valueOf(session.getAttribute("user_id").toString());
         Date date = new Date();
-        String dateFormat= new SimpleDateFormat("yyyy-MM-dd :hh:mm:ss").toString();
+        String dateFormat= new SimpleDateFormat("yyyy-MM-dd :hh:mm:ss").format(date).toString();
         int result=articleService.addArticle(article_title,article_text,user_id,dateFormat,Integer.valueOf(article_type));
         JSONObject msg = new JSONObject();
         if (result==1){

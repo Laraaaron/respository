@@ -25,7 +25,7 @@ public interface ArticleMapper {
     @Select("select a.*,b.user_name from article a join user b on a.user_id = b.user_id where article_id=#{article_id}")
     List<article> findbyarticle_id(@Param("article_id") Integer article_id);
 
-    @Insert("insert into article(article_title, article_text,user_id,article_time,article_type) values(#{article_reviews}, #{user_id},#{article_id},#{article_time})")
+    @Insert("insert into article(article_title, article_text,user_id,article_time,article_type) values(#{article_title}, #{article_text},#{user_id},#{article_time},#{article_type})")
     int addArticle(@Param("article_title") String article_title,@Param("article_text") String article_text,@Param("user_id") Integer user_id,@Param("article_time") String article_time,@Param("article_type") Integer article_type );
 
 }
