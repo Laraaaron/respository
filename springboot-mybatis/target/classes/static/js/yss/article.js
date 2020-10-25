@@ -51,7 +51,7 @@ window.onload = function () {
                     result.article[i].article_time.split("-")[0]
                     +"</span>\n" +
                     "\t\t\t\t\t\t\t</div>\n" +
-                    "\t\t\t\t\t\t\t<div class=\"content\">\n" +
+                    "\t\t\t\t\t\t\t<div class=\"content\" style=\"overflow-x:hidden\">\n" +
                     "\t\t\t\t\t\t\t\t<a href=\"/blog/article_read?article_id="+
                     result.article[i].article_id
                     +"\" class=\"cover img-light\">\n" +
@@ -105,6 +105,7 @@ window.onload = function () {
             alert("异常！请重试");
         }
     });
+    // wrapText();
 };
 
 
@@ -201,9 +202,20 @@ function seach() {
             alert("异常！请重试");
         }
     });
+    // wrapText();
 
 }
 
+
+function wrapText() {
+    $(".content").each(function (i) {
+        var divH = $(this).height();
+        var $p = $("p", $(this)).eq(0);
+        while ($p.outerHeight() > divH) {
+            $p.text($p.text().replace(/(\s)*([a-zA-Z0-9]+|\W)(\.\.\.)?$/, "..."));
+        }
+    });
+}
 
 
 layui.use(['jquery'], function () {
