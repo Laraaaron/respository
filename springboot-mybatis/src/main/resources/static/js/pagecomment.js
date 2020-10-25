@@ -38,26 +38,35 @@
     // 点击提交按钮提交评论并获取评论做展示
     $('.layui-btn').click(function () {
         var comment = $('#remarkEditor').val();
-        $.post(
-            'blog/comment',
-            {article_review: comment},
-            function (result) {
-                $.each(function () {
-                    var username = result.get("username")
-                    var comment = result.get("article_review");
+        if (!comment) {
+            alert("输入内容不能为空！");
+        } else {
+            $.post(
+                'blog/comment',
+                {article_review: comment},
+                function (result) {
+                    $.each(function () {
+                        var username = result.get("username")
+                        var comment = result.get("article_review");
 
-                    var s = '<li class="list-group-item">\n' +
-                        '<div>\n' +
-                        '<span>' + username + '</span>\n' +
-                        '</div>\n' +
-                        '<div class="comment_con">\n' +
-                        '<p>' + comment + '</p>\n' +
-                        '</div>\n' +
-                        '</li>'
-                    $('#reviews').append(s);
-                });
-            }
-        );
+                        var s = '<li class="list-group-item">\n' +
+                            '<div>\n' +
+                            '<span>' + username + '</span>\n' +
+                            '</div>\n' +
+                            '<div class="comment_con">\n' +
+                            '<p>' + comment + '</p>\n' +
+                            '</div>\n' +
+                            '</li>'
+                        $('#reviews').append(s);
+                    });
+                },
+                "json"
+            );
+
+
+
+        }
+
     });
 
 });
