@@ -37,7 +37,7 @@
 
     // 点击提交按钮提交评论并获取评论做展示
     $('.layui-btn').click(function () {
-        var comment = $('#articleid').val();
+        var comment = $('#remarkEditor').val();
         $.post(
             'blog/comment',
             {article_review: comment},
@@ -54,7 +54,7 @@
                         '<p>' + comment + '</p>\n' +
                         '</div>\n' +
                         '</li>'
-                    $('#blog-comment').append(s);
+                    $('#reviews').append(s);
                 });
             }
         );
