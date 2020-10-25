@@ -1,5 +1,6 @@
 package com.forezp.web;
 
+import com.alibaba.fastjson.JSONObject;
 import com.forezp.dao.ReviewMapper;
 import com.forezp.entity.article;
 import com.forezp.entity.review;
@@ -61,13 +62,13 @@ public class ArticleReadController {
 
 
     @RequestMapping(value = "/comment", method = {RequestMethod.POST})
-    public String Add_comment(HttpServletRequest request, Model model) throws ParseException {
+    public String Add_comment(HttpServletRequest request) throws ParseException {
         /**
          * 添加文章详情页评论
          */
         Logger logger = Logger.getGlobal();
         int user_id = Integer.parseInt(request.getParameter("user_id"));
-        String review = request.getParameter("article_reviews");
+        String review = request.getParameter("article_review");
         int article_id = Integer.parseInt(request.getParameter("article_id"));
         logger.info("获取用户id是：" + user_id);
 
@@ -82,7 +83,9 @@ public class ArticleReadController {
 
         //添加评论后查询所有的评论
         List<review> reviews = reviewMapper.findreview(Integer.valueOf(article_id));
-        model.addAttribute("reviews", reviews);
-        return "read";
+        JSONObject result = new JSONObject();
+        result.put("review",reviews);
+        return result.toJSONString();
+
     }
 }
