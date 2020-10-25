@@ -13,6 +13,23 @@
     <link rel="stylesheet" href="../css/gloable.css" />
     <link rel="stylesheet" href="../css/nprogress.css" />
     <link rel="stylesheet" href="../css/blog.css" />
+    <style>
+        /* code 样式 */
+        code {
+            display: inline-block;
+            *display: inline;
+            *zoom: 1;
+            background-color: #f1f1f1;
+            border-radius: 3px;
+            padding: 3px 5px;
+            margin: 0 3px;
+        }
+        pre code {
+            display: block;
+        }
+
+
+    </style>
 </head>
 <body>
     <div class="header">
@@ -65,7 +82,8 @@
                                 <span class="year fs-18" th:text="${year!=null}?${year}"></span>
                             </div>
                             <div class="content artiledetail" style="border-bottom: 0px solid #e1e2e0; padding-bottom: 20px;">
-                                <P th:text="${article!=null}?${article[0].article_text}"></P>
+                                <p id="article_text">
+                                </p>
                                 <div class="copyright mt20">
                                     <p class="f-toe fc-black">
                                         非特殊说明，本文版权归 xx个人博客 所有，转载请注明出处.
@@ -140,10 +158,12 @@
     <script src="../js/yss/gloable.js"></script>
     <script src="../js/plugins/nprogress.js"></script>
     <script src="../js/pagecomment.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
     <script>NProgress.start();</script>
-    <script> 
+    <script th:inline="javascript">
         window.onload = function () {
             NProgress.done();
+            $("#article_text").html([[${article[0].article_text}]]);
         };
     </script>
 </body>
