@@ -67,9 +67,10 @@ public class ArticleReadController {
          * 添加文章详情页评论
          */
         Logger logger = Logger.getGlobal();
-        int user_id = Integer.parseInt(request.getParameter("user_id"));
+        HttpSession session = request.getSession();
+        int user_id = Integer.valueOf(session.getAttribute("user_id").toString());
         String review = request.getParameter("article_review");
-        int article_id = Integer.parseInt(request.getParameter("article_id"));
+        int article_id = Integer.valueOf(request.getParameter("article_id"));
         logger.info("获取用户id是：" + user_id);
 
         //获取当前系统时间
@@ -85,6 +86,7 @@ public class ArticleReadController {
         List<review> reviews = reviewMapper.findreview(Integer.valueOf(article_id));
         JSONObject result = new JSONObject();
         result.put("review",reviews);
+        result.put("length",reviews.size());
         return result.toJSONString();
 
     }
