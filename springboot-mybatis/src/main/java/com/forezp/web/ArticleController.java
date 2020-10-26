@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.forezp.entity.article;
 import com.forezp.service.ArticleService;
+import com.mysql.cj.xdevapi.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -71,7 +72,9 @@ public class ArticleController {
     }
 
     @RequestMapping("/write")
-    public String write_home(){
+    public String write_home(Model model,HttpServletRequest request){
+        HttpSession session = request.getSession();
+        model.addAttribute("username","Hello,"+session.getAttribute("username"));
         return "diary";
     }
 
