@@ -54,7 +54,7 @@
                 success: function (result) {
                     console.log(result.review[1].article_review);
                     var s = "";
-                    for (var i = o; i <= result.length, i++) {
+                    for (var i = 0; i <= result.length; i++) {
                         var t =
                             "<li class=\"list-group-item\">\n" +
                             "<div>\n" +
