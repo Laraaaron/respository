@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -62,6 +63,7 @@ public class ArticleReadController {
 
 
     @RequestMapping(value = "/comment", method = {RequestMethod.POST})
+    @ResponseBody
     public String Add_comment(HttpServletRequest request) throws ParseException {
         /**
          * 添加文章详情页评论
@@ -86,7 +88,7 @@ public class ArticleReadController {
         List<review> reviews = reviewMapper.findreview(Integer.valueOf(article_id));
         JSONObject result = new JSONObject();
         result.put("review",reviews);
-        result.put("length",reviews.size());
+        result.put("lenth",reviews.size());
         return result.toJSONString();
 
     }

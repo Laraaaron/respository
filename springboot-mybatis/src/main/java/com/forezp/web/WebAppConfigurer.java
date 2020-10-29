@@ -12,6 +12,7 @@ public class WebAppConfigurer extends WebMvcConfigurerAdapter {
          * 拦截注册表
          */
         registry.addInterceptor(new UserLoginInterceptorBySpring()).addPathPatterns("/blog/write");
+        registry.addInterceptor(new UserLoginInterceptorBySpring()).addPathPatterns("/blog/comment");
         super.addInterceptors(registry);
     }
 }

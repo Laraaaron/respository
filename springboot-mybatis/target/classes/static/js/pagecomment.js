@@ -52,21 +52,24 @@
                 url: "/blog/comment",
                 data: {article_review: comment, article_id: article_id},
                 success: function (result) {
-                    console.log(result.review[1].article_review);
+                    console.log(result.review[1].article_reviews);
                     var s = "";
-                    for (var i = 0; i <= result.length; i++) {
+                    for (var i=0;i<result.lenth;i++) {
                         var t =
                             "<li class=\"list-group-item\">\n" +
                             "<div>\n" +
-                            "<span>" + result.review[1].user_name + "</span>\n" +
+                            "<span>" + result.review[i].user_name + "</span>\n" +
                             "</div>\n" +
                             "<div class=\"comment_con\">\n" +
-                            "<span>" + result.review[1].article_review + "</span>\n" +
+                            "<span>" + result.review[i].article_reviews + "</span>\n" +
                             "</div>\n" +
                             "</li>"
                         s += t;
                     }
                     console.log(s);
+                    $('#remarkEditor').val("");
+                    // $('#reviews').html("")
+                    document.getElementById("reviews").innerHTML=" ";
                     $('#reviews').html(s);
                 },
                 error: function () {

@@ -111,8 +111,10 @@
                                 <!--</ul>-->
                             <!--</div>-->
                             <!--<div class="f-cb"></div>-->
-                            <div id="reviews" class="" style="border-top: 0px solid #e1e2e0; padding-top: 20px;" th:each="value:${reviews}">
+                            <div id="reviews" class="" style="border-top: 0px solid #e1e2e0; padding-top: 20px;">
+                                <div th:each="value:${reviews}">
                                 <p th:text="${value.getArticle_reviews()}"></p>
+                                </div>
                             </div>
                             <fieldset class="layui-elem-field layui-field-title">
                                 <legend>发表评论</legend>
