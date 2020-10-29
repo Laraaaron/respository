@@ -122,8 +122,8 @@ public class AccountController {
         JSONObject msg =new JSONObject();
         LoginStatus status = new LoginStatus();
         if (result == null){
-           user t= accountService.add(user_email,user_password,user_name);
-           if(t!=null) {
+           int t= accountService.add(user_email,user_password,user_name);
+           if(t==1) {
                msg.put("status",LoginStatus.getStatus_success());
                return msg.toJSONString();
            }else {
@@ -152,29 +152,30 @@ public class AccountController {
 
     @RequestMapping("/callback/{source}")
     public void login(AuthCallback callback,HttpServletRequest request,HttpServletResponse response,@PathVariable String source) throws IOException {
-        user result = null;
         if (source.equals("github")){
             AuthRequest authRequest = getAuthRequest(LoginStatus.getGithub_clientId(),LoginStatus.getGithub_clientSecret(),LoginStatus.getGithub_redirectUri());
             AuthResponse<AuthUser> authResponse = authRequest.login(callback);
-            AuthUser user = authResponse.getData();
-            if (accountService.matchinformation(user.getUuid())==null){
-                result=accountService.add(user.getUuid(),"123456",user.getUsername());
+            AuthUser authuser = authResponse.getData();
+            if (accountService.matchinformation(authuser.getUuid()+"@163.com")==null){
+                accountService.add(authuser.getUuid()+"@163.com","123456",authuser.getUsername());
             }
+            int result= accountService.matchinformation(authuser.getUuid()+"@163.com").getUser_id();
             HttpSession session = request.getSession();
-            session.setAttribute("username",user.getUsername());
-            session.setAttribute("user_id", result.getUser_id());
+            session.setAttribute("username",authuser.getUsername());
+            session.setAttribute("user_id", result);
             response.sendRedirect("/blog/article_page");
         }
         else if (source.equals("dingtalk")){
             AuthRequest authRequest = getAuthRequestdingtalk(LoginStatus.getDingding_clientId(),LoginStatus.getDingding_clientSecret(),LoginStatus.getDingding_redirectUri());
             AuthResponse<AuthUser> authResponse = authRequest.login(callback);
-            AuthUser user = authResponse.getData();
-            if (accountService.matchinformation(user.getUuid()+"@163.com")==null){
-                result=accountService.add(user.getUuid()+"@163.com","123456",user.getUsername());
+            AuthUser authuser = authResponse.getData();
+            if (accountService.matchinformation(authuser.getUuid()+"@163.com")==null){
+                accountService.add(authuser.getUuid()+"@163.com","123456",authuser.getUsername());
             }
+            int result= accountService.matchinformation(authuser.getUuid()+"@163.com").getUser_id();
             HttpSession session = request.getSession();
-            session.setAttribute("username",user.getUsername());
-            session.setAttribute("user_id", result.getUser_id());
+            session.setAttribute("username",authuser.getUsername());
+            session.setAttribute("user_id", result);
             response.sendRedirect("/blog/article_page");
         }
 
