@@ -1,13 +1,19 @@
 ﻿
 window.onload = function () {
     NProgress.done();
+    getArticle(null);
+    // wrapText();
+};
+
+
+function getArticle(type){
     $.ajax({
         //几个参数需要注意一下
         type: "POST",//方法类型
         dataType: "json",//预期服务器返回的数据类型
         async:false, //不是异步处理
         url: "/blog/togetarticle" ,
-        data: {},
+        data: {"type":type},
         success: function (result) {
             var text = "";
             var hot_text = "";
@@ -105,8 +111,7 @@ window.onload = function () {
             alert("异常！请重试");
         }
     });
-    // wrapText();
-};
+}
 
 
 function seach() {
