@@ -14,6 +14,12 @@
     <link rel="stylesheet" href="../css/gloable.css" />
     <link rel="stylesheet" href="../css/nprogress.css" />
     <link rel="stylesheet" href="../css/timeline.css" />
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!--    <style>-->
+<!--    div{position:absolute;100%}-->
+<!--    button{position:relative;right: 20px}-->
+<!--    </style>-->
 </head>
 <body>
     <div class="header">
@@ -37,7 +43,6 @@
                         <option value="2">python</option>
                         <option value="3">javascript</option>
                     </select>
-                    <button class="btn btn-default" style="align-content: right" onclick="sendarticle()">提交</button>
                 </div>
                 <a class="phone-menu">
                     <i></i>
@@ -48,6 +53,10 @@
         </div>
     </header>
     <div class="doc-container" id="doc-container">
+        <div style="width:100%;height:50px;background-color:white ">
+        <button class="btn btn-success" style="float:right;margin-left:10px"type=button  onclick="sendarticle()">提交</button>
+        <button class="btn btn-success" style="float:right" type=button onclick="deletearticle()">预览</button>
+        </div>
          <!--<div class="container-fixed">-->
             <!--<div class="timeline-box shadow">-->
                 <!--<div class="timeline-main">-->
@@ -63,7 +72,7 @@
         <!--</div>-->
         <!--</div>-->
     </div>
-    </div>
+
     <footer class="grid-footer">
         <div class="footer-fixed">
             <div class="copyright">
