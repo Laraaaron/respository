@@ -20,6 +20,14 @@ function getArticle(type){
             console.log(result.lenth)
             var result_type=""
             for (var i =0;i<result.lenth;i++){
+                var comments_like = result.article[i].article_comments_like;
+                var comments_nums = result.article[i].article_cemments_nums;
+                if(comments_like == null){
+                    comments_like = 0;
+                }
+                if(comments_nums == null){
+                    comments_nums = 0;
+                }
                 if (result.article[i].article_type == 1){
                      result_type = "Java";
                 }
@@ -79,13 +87,13 @@ function getArticle(type){
                     "\t\t\t\t\t\t\t\t\t<span class=\"read\">\n" +
                     "\t\t\t\t\t\t\t\t\t\t<i class=\"fa fa-eye fs-16\"></i>\n" +
                     "\t\t\t\t\t\t\t\t\t\t<i class=\"num\">"+
-                    result.article[i].article_comments_like
+                    comments_like
                     +"</i>\n" +
                     "\t\t\t\t\t\t\t\t\t</span>\n" +
                     "\t\t\t\t\t\t\t\t\t<span class=\"ml20\">\n" +
                     "\t\t\t\t\t\t\t\t\t\t<i class=\"fa fa-comments fs-16\"></i>\n" +
                     "\t\t\t\t\t\t\t\t\t\t<a href=\"javascript:void(0)\" class=\"num fc-grey\">"+
-                    result.article[i].article_comments_nums
+                    comments_nums
                     +"</a>\n" +
                     "\t\t\t\t\t\t\t\t\t</span>\n" +
                     "\t\t\t\t\t\t\t\t</div>\n" +
@@ -128,6 +136,14 @@ function seach() {
             var text = "";
             var result_type=""
             for (var i =0;i<result.lenth;i++){
+                var comments_like = result.article[i].article_comments_like;
+                var comments_nums = result.article[i].article_cemments_nums;
+                if(comments_like == null){
+                    comments_like = 0;
+                }
+                if(comments_nums == null){
+                    comments_nums = 0;
+                }
                 if (result.article[i].article_type == 1){
                     result_type = "Java";
                 }
@@ -187,13 +203,13 @@ function seach() {
                     "\t\t\t\t\t\t\t\t\t<span class=\"read\">\n" +
                     "\t\t\t\t\t\t\t\t\t\t<i class=\"fa fa-eye fs-16\"></i>\n" +
                     "\t\t\t\t\t\t\t\t\t\t<i class=\"num\">"+
-                    result.article[i].article_comments_like
+                    comments_like
                     +"</i>\n" +
                     "\t\t\t\t\t\t\t\t\t</span>\n" +
                     "\t\t\t\t\t\t\t\t\t<span class=\"ml20\">\n" +
                     "\t\t\t\t\t\t\t\t\t\t<i class=\"fa fa-comments fs-16\"></i>\n" +
                     "\t\t\t\t\t\t\t\t\t\t<a href=\"javascript:void(0)\" class=\"num fc-grey\">"+
-                    result.article[i].article_comments_nums
+                    comments_nums
                     +"</a>\n" +
                     "\t\t\t\t\t\t\t\t\t</span>\n" +
                     "\t\t\t\t\t\t\t\t</div>\n" +
