@@ -82,24 +82,24 @@ function tosignup() {
             success: function (result) {
                 console.log(result);//打印服务端返回的数据(调试用)
                 if (result.status == 1) {
-                    alert("注册成功");
+                    alert('success','注册成功')
                     window.location.href = "/blog/signin";
                 }
                 if (result.status == 2) {
-                    alert("该邮箱已被注册")
+                    alert('warning',"该邮箱已被注册")
                 }
                 if (result.status == 3) {
-                    alert("注册失败")
+                    alert('error',"注册失败")
                 }
 
             },
             error: function () {
-                alert("异常！请重试");
+                alert('error',"异常！请重试");
             }
         });
 
     } else {
-        alert("输入不合法，请重新输入！")
+        alert('warning',"输入不合法，请重新输入！")
     }
 
 
@@ -123,15 +123,64 @@ function tosignin() {
                 window.location.href = "/blog/article_page";
 
             } else {
-                alert("账号或密码错误")
+                alert('error','账号或密码错误')
             }
         },
         error: function () {
-            alert("异常！");
+            alert('error',"异常！");
         }
     });
 
 }
+
+function sendarticle() {
+    var text = editor.txt.html()
+    var type = $("#type").val()
+    var title ="测试"
+    // console.log(text)
+    // console.log(type)
+    $.ajax({
+        //几个参数需要注意一下
+        type: "POST",//方法类型
+        dataType: "json",//预期服务器返回的数据类型
+        async: false, //不是异步处理
+        url: "/blog/addarticle",
+        data: {"text": text, "type": type, "title": title},
+        success: function (result) {
+            console.log(result);//打印服务端返回的数据(调试用)
+            if (result.status == true) {
+                alert("success","添加成功");
+                window.location.href = "/blog/article_page";
+            }
+            if (result.status == false) {
+                alert("warning","添加失败，请重试")
+            }
+
+        },
+        error: function () {
+            alert("error","异常！请重试");
+        }
+    });
+}
+
+function alert(e,text){
+    $modal({
+        type: 'alert', //弹框类型  'alert' or  'confirm' or 'message'   message提示(开启之前如果之前含有弹框则清除)
+        icon: e, // 提示图标显示 'info' or 'success' or 'warning' or 'error'  or 'question'
+        timeout: 2000, // 单位 ms  显示多少毫秒后关闭弹框 （ confirm 下无效 | 不传默认为 2000ms | 最短显示时间为500ms）
+        title:text, // 提示文字
+        content: '', // 提示文字
+        top:10, //距离顶部距离 单位px
+        center: false,// 是否绝对居中 默认为false  设置true后   top无效
+        transition: 300, //过渡动画 默认 200   单位ms
+        closable: true, // 是否显示可关闭按钮  默认为 false
+        mask:true, // 是否显示遮罩层   默认为 false
+        pageScroll: true, // 是否禁止页面滚动
+        width:300, // 单位 px 默认显示宽度 最下默认为300
+        maskClose:true, // 是否点击遮罩层可以关闭提示框 默认为false
+    })
+}
+
 
 var Auth = {
     vars: {

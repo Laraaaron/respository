@@ -69,9 +69,9 @@ public class AccountController {
         String user_email=request.getParameter("user_email");
         String user_password=request.getParameter("user_password");
         user result =accountService.findAccount(user_email,user_password);
-        logger.info(result.toString());
         JSONObject msg =new JSONObject();
         if (result != null){
+            logger.info(result.toString());
             msg.put("status",true);
             msg.put("user_name",result.getUser_name());
             HttpSession session = request.getSession();

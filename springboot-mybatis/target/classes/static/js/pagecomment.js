@@ -40,7 +40,7 @@
         var comment = $('#remarkEditor').val();
 
         var test = window.location.href;
-        var article_id = test.split("?article_id=")[1];
+        var article_id = test.split("?article_id=")[1].split("#")[0];
 
         if (!comment) {
             alert("输入内容不能为空！");

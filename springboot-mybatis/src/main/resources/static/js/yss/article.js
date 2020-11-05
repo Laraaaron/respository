@@ -92,7 +92,7 @@ function getArticle(type){
                     "\t\t\t\t\t\t\t\t\t</span>\n" +
                     "\t\t\t\t\t\t\t\t\t<span class=\"ml20\">\n" +
                     "\t\t\t\t\t\t\t\t\t\t<a href=\"/blog/article_read?article_id="+
-                    result.article[i].article_id
+                    result.article[i].article_id +"#add"
                     +"\" class=\"num fc-grey\">"+
                     "\t\t\t\t\t\t\t\t\t\t<i class=\"fa fa-comments fs-16\"></i>\n" +
                     comments_nums

@@ -81,7 +81,7 @@
                                 <span class="month fs-18" th:text="${month!=null}?${month}"><small class="fs-14">月</small></span>
                                 <span class="year fs-18" th:text="${year!=null}?${year}"></span>
                             </div>
-                            <div class="content artiledetail" style="border-bottom: 0px solid #e1e2e0; padding-bottom: 20px;">
+                            <div class="content artiledetail" style="border-bottom: 0px solid #e1e2e0; padding-bottom: 2px;">
                                 <p id="article_text">
                                 </p>
                                 <div class="copyright mt20">
@@ -111,12 +111,12 @@
                                 <!--</ul>-->
                             <!--</div>-->
                             <!--<div class="f-cb"></div>-->
-                            <div id="reviews" class="" style="border-top: 0px solid #e1e2e0; padding-top: 20px;">
+                            <div id="reviews" class="" style="border-top: 0px solid #e1e2e0 padding-top: 0px line-height:5px">
                                 <div th:each="value:${reviews}">
                                 <p th:text="${value.getArticle_reviews()}"></p>
                                 </div>
                             </div>
-                            <fieldset class="layui-elem-field layui-field-title">
+                            <fieldset class="layui-elem-field layui-field-title" id="add">
                                 <legend>发表评论</legend>
                                 <div class="layui-field-box">
                                     <div class="leavemessage" style="text-align:initial">
