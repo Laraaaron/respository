@@ -21,7 +21,7 @@ function getArticle(type){
             var result_type=""
             for (var i =0;i<result.lenth;i++){
                 var comments_like = result.article[i].article_comments_like;
-                var comments_nums = result.article[i].article_cemments_nums;
+                var comments_nums = result.article[i].article_comments_nums;
                 if(comments_like == null){
                     comments_like = 0;
                 }
@@ -91,8 +91,10 @@ function getArticle(type){
                     +"</i>\n" +
                     "\t\t\t\t\t\t\t\t\t</span>\n" +
                     "\t\t\t\t\t\t\t\t\t<span class=\"ml20\">\n" +
+                    "\t\t\t\t\t\t\t\t\t\t<a href=\"/blog/article_read?article_id="+
+                    result.article[i].article_id
+                    +"\" class=\"num fc-grey\">"+
                     "\t\t\t\t\t\t\t\t\t\t<i class=\"fa fa-comments fs-16\"></i>\n" +
-                    "\t\t\t\t\t\t\t\t\t\t<a href=\"javascript:void(0)\" class=\"num fc-grey\">"+
                     comments_nums
                     +"</a>\n" +
                     "\t\t\t\t\t\t\t\t\t</span>\n" +
@@ -137,7 +139,7 @@ function seach() {
             var result_type=""
             for (var i =0;i<result.lenth;i++){
                 var comments_like = result.article[i].article_comments_like;
-                var comments_nums = result.article[i].article_cemments_nums;
+                var comments_nums = result.article[i].article_comments_nums;
                 if(comments_like == null){
                     comments_like = 0;
                 }
@@ -207,8 +209,10 @@ function seach() {
                     +"</i>\n" +
                     "\t\t\t\t\t\t\t\t\t</span>\n" +
                     "\t\t\t\t\t\t\t\t\t<span class=\"ml20\">\n" +
+                    "\t\t\t\t\t\t\t\t\t\t<a href=\"/blog/article_read?article_id="+
+                    result.article[i].article_id
+                    +"\" class=\"num fc-grey\">"+
                     "\t\t\t\t\t\t\t\t\t\t<i class=\"fa fa-comments fs-16\"></i>\n" +
-                    "\t\t\t\t\t\t\t\t\t\t<a href=\"javascript:void(0)\" class=\"num fc-grey\">"+
                     comments_nums
                     +"</a>\n" +
                     "\t\t\t\t\t\t\t\t\t</span>\n" +
