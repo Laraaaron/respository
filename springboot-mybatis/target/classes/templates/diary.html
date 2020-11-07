@@ -24,7 +24,7 @@
 <body>
     <div class="header">
     </div>
-    <header class="gird-header">
+    <header class="gird-header" style="box-shadow:0px 0px 5px #A8A8A8">
         <div class="header-fixed">
             <div class="header-inner">
                 <a href="javascript:void(0)" class="header-logo" id="logo" th:text="${username}"></a>
@@ -37,13 +37,6 @@
                         <li><a href="/blog/write">编写</a></li>
                     </ul>
                 </nav>
-                <div class="blog-user">
-                    <select id="type">
-                        <option value="1">java</option>
-                        <option value="2">python</option>
-                        <option value="3">javascript</option>
-                    </select>
-                </div>
                 <a class="phone-menu">
                     <i></i>
                     <i></i>
@@ -53,9 +46,16 @@
         </div>
     </header>
     <div class="doc-container" id="doc-container">
-        <div style="width:100%;height:50px;background-color:white ">
+        <div style="width:100%;height:50px;background-color:white;padding:8px">
         <button class="btn btn-success" style="float:right;margin-left:10px"type=button  onclick="sendarticle()">提交</button>
-        <button class="btn btn-success" style="float:right" type=button onclick="deletearticle()">预览</button>
+        <button class="btn btn-success" style="float:right;margin-left:10px" type=button onclick="">预览</button>
+            <div class="blog-user"style="float:right;line-height:1px;position:relative">
+                <select id="type">
+                    <option value="1">java</option>
+                    <option value="2">python</option>
+                    <option value="3">javascript</option>
+                </select>
+            </div>
         </div>
          <!--<div class="container-fixed">-->
             <!--<div class="timeline-box shadow">-->
@@ -103,6 +103,7 @@
     <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
     <script type="text/javascript" src="//unpkg.com/wangeditor/dist/wangEditor.min.js"></script>
     <script type="text/javascript" src="../js/auth.js"></script>
+    <script src="../js/modal_dialog.js"></script>
     <script type="text/javascript">
         var E = window.wangEditor
         var editor = new E('#div1')

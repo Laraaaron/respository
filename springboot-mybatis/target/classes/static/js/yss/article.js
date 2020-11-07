@@ -1,10 +1,22 @@
-﻿
+﻿var start =0;
+
 window.onload = function () {
     NProgress.done();
     getArticle(null);
     // wrapText();
 };
 
+window.onscroll = function (){
+    var marginBot = 0;
+    if (document.documentElement.scrollTop){
+        marginBot = document.documentElement.scrollHeight-(document.documentElement.scrollTop+document.body.scrollTop)-document.documentElement.clientHeight;
+    } else {
+        marginBot = document.body.scrollHeight-document.body.scrollTop- document.body.clientHeight;
+    }
+    if(marginBot<=0) {
+        getArticle(null);
+    }
+}
 
 function getArticle(type){
     $.ajax({
@@ -13,7 +25,7 @@ function getArticle(type){
         dataType: "json",//预期服务器返回的数据类型
         async:false, //不是异步处理
         url: "/blog/togetarticle" ,
-        data: {"type":type},
+        data: {"type":type,"start":start},
         success: function (result) {
             var text = "";
             var hot_text = "";
@@ -114,7 +126,8 @@ function getArticle(type){
 
             }
             // console.log(hot_text)
-            $("#LAY_bloglist").html(text)
+            $("#LAY_bloglist").append(text)
+            start = start+10;
             $("#hot_article").html(hot_text)
         },
         error : function() {

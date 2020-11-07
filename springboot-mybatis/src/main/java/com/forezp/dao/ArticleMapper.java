@@ -10,8 +10,8 @@ import java.util.List;
 
 @Mapper
 public interface ArticleMapper {
-    @Select("select * from article")
-    List<article> findarticle();
+    @Select("select * from article limit #{start},#{end}")
+    List<article> findarticle(@Param("start") Integer start,@Param("end") Integer end);
 
     @Select("select * from article order by article_comments_like desc limit 10")
     List<article> hotarticle();

@@ -29,11 +29,11 @@ public class ArticleController {
     public String findarticle(HttpServletRequest request) {
         Logger logger = Logger.getGlobal();
         String type_str = request.getParameter("type");
+        Integer start = Integer.valueOf(request.getParameter("start"));
         logger.info("获取的文章类型为：" + type_str);
 
-
         JSON result = new JSONObject();
-        List<article> article = articleService.findarticle();
+        List<article> article = articleService.findarticle(start,start+10);
         HttpSession session = request.getSession();
         ((JSONObject) result).put("article", article);
         ((JSONObject) result).put("lenth", article.size());

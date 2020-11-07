@@ -12,8 +12,8 @@ public class ArticleService implements ArticleMapper {
     @Autowired
     ArticleMapper articleMapper;
     @Override
-    public List<article> findarticle() {
-        return articleMapper.findarticle();
+    public List<article> findarticle(Integer start,Integer end) {
+        return articleMapper.findarticle(start,end);
     }
 
     @Override
