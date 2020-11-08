@@ -32,7 +32,7 @@ public class ArticleController {
         Integer start = Integer.valueOf(request.getParameter("start"));
         logger.info("获取的文章类型为：" + type_str);
 
-        JSON result = new JSONObject();
+        JSONObject result = new JSONObject();
         List<article> article = articleService.findarticle(start,start+10);
         HttpSession session = request.getSession();
         ((JSONObject) result).put("article", article);
@@ -41,12 +41,15 @@ public class ArticleController {
         ((JSONObject) result).put("hotarticle", hot_article);
         ((JSONObject) result).put("hot_lenth", hot_article.size());
         ((JSONObject) result).put("username", session.getAttribute("username"));
+        result.put("return_type","All");
+
 
         if (type_str != null && !type_str.isEmpty()) {
             Integer article_type = Integer.valueOf(type_str);
             List<article> articles = articleService.findbyarticle(article_type);
             ((JSONObject) result).put("article", articles);
             ((JSONObject) result).put("lenth", articles.size());
+            result.put("return_type","seach");
         }
 
 

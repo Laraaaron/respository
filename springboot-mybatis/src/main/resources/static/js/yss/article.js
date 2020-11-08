@@ -2,7 +2,7 @@
 
 window.onload = function () {
     NProgress.done();
-    getArticle(null);
+    getArticle();
     // wrapText();
 };
 
@@ -14,7 +14,7 @@ window.onscroll = function (){
         marginBot = document.body.scrollHeight-document.body.scrollTop- document.body.clientHeight;
     }
     if(marginBot<=0) {
-        getArticle(null);
+        getArticle();
     }
 }
 
@@ -125,8 +125,13 @@ function getArticle(type){
                 hot_text += hot_data;
 
             }
-            // console.log(hot_text)
-            $("#LAY_bloglist").append(text)
+            if (result.return_type == "All"){
+                // console.log(hot_text)
+                $("#LAY_bloglist").append(text)
+            }
+            else if (result.return_type=="seach"){
+                $("#LAY_bloglist").html(text)
+            }
             start = start+10;
             $("#hot_article").html(hot_text)
         },
