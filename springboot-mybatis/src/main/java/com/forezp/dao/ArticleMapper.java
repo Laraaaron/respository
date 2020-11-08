@@ -1,10 +1,7 @@
 package com.forezp.dao;
 
 import com.forezp.entity.article;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -34,4 +31,10 @@ public interface ArticleMapper {
     @Insert("insert into article(article_title, article_text,user_id,article_time,article_type) values(#{article_title}, #{article_text},#{user_id},#{article_time},#{article_type})")
     int addArticle(@Param("article_title") String article_title,@Param("article_text") String article_text,@Param("user_id") Integer user_id,@Param("article_time") String article_time,@Param("article_type") Integer article_type );
 
+
+    @Delete("delete from article where article_id = #{article_id}")
+    void deleteArticle(@Param("article_id")Integer article_id );
+
+    @Update("update from article set article_title=#{article_title},article_text=#{article_text},article_type=#{article_type} where article_id=#{article_id}")
+    List<article> updateArticle(@Param("article_title") String article_title,@Param("article_text") String article_text,@Param("user_id") Integer user_id,@Param("article_time") String article_time,@Param("article_type") Integer article_type);
 }

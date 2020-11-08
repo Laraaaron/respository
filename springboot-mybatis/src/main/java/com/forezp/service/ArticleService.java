@@ -40,4 +40,14 @@ public class ArticleService implements ArticleMapper {
     public int addArticle(String article_title, String article_text, Integer user_id, String article_time, Integer article_type) {
         return articleMapper.addArticle(article_title,article_text,user_id,article_time,article_type);
     }
+
+    @Override
+    public void deleteArticle(Integer article_id){
+        articleMapper.deleteArticle(article_id);
+    }
+
+    @Override
+    public List<article> updateArticle(String article_title, String article_text, Integer user_id, String article_time, Integer article_type){
+        return articleMapper.updateArticle(article_title,article_text,user_id,article_time,article_type);
+    }
 }
