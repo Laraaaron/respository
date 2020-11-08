@@ -12,6 +12,15 @@ public class article {
     private String article_time;
     private Integer article_type;
     private String user_name;
+    private Integer talk_nums;
+
+    public Integer getTalk_nums() {
+        return talk_nums;
+    }
+
+    public void setTalk_nums(Integer talk_nums) {
+        this.talk_nums = talk_nums;
+    }
 
     public Integer getArticle_id() {
         return article_id;

@@ -33,7 +33,7 @@ function getArticle(type){
             var result_type=""
             for (var i =0;i<result.lenth;i++){
                 var comments_like = result.article[i].article_comments_like;
-                var comments_nums = result.article[i].article_comments_nums;
+                var comments_nums = result.article[i].talk_nums;
                 if(comments_like == null){
                     comments_like = 0;
                 }
@@ -157,7 +157,7 @@ function seach() {
             var result_type=""
             for (var i =0;i<result.lenth;i++){
                 var comments_like = result.article[i].article_comments_like;
-                var comments_nums = result.article[i].article_comments_nums;
+                var comments_nums = result.article[i].talk_nums;
                 if(comments_like == null){
                     comments_like = 0;
                 }
