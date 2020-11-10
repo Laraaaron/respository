@@ -16,95 +16,143 @@
     <link rel="stylesheet" href="../css/timeline.css" />
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<!--    <style>-->
-<!--    div{position:absolute;100%}-->
-<!--    button{position:relative;right: 20px}-->
-<!--    </style>-->
+    <style>
+    ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    #D4D4D4;
+    font-size:14px;
+    letter-spacing:2px;
+    font-family:'\5FAE\8F6F\96C5\9ED1'
+    }
+    .header{
+     background-image:url(../image/detail.jpg);
+     background-position:center;
+     background-attachment:fixed;
+     background-size:100% 100%;
+    }
+    </style>
 </head>
-<body>
-    <div class="header">
+<body id="oo">
+<div class="header">
+</div>
+<header class="gird-header" style="box-shadow:0px 0px 5px #A8A8A8">
+    <div class="header-fixed">
+        <div class="header-inner">
+            <a href="javascript:void(0)" class="header-logo" id="logo" th:text="${username}"></a>
+            <nav class="nav" id="nav">
+                <ul>
+                    <li><a href="/blog/home">首页</a></li>
+                    <li><a href="/blog/article_page">博客</a></li>
+                    <!--<li><a href="message.html">留言</a></li>-->
+                    <!--<li><a href="diary.html">日记</a></li>-->
+                    <li><a href="/blog/write">编写</a></li>
+                </ul>
+            </nav>
+            <a class="phone-menu">
+                <i></i>
+                <i></i>
+                <i></i>
+            </a>
+        </div>
     </div>
-    <header class="gird-header" style="box-shadow:0px 0px 5px #A8A8A8">
-        <div class="header-fixed">
-            <div class="header-inner">
-                <a href="javascript:void(0)" class="header-logo" id="logo" th:text="${username}"></a>
-                <nav class="nav" id="nav">
-                    <ul>
-                        <li><a href="/blog/home">首页</a></li>
-                        <li><a href="/blog/article_page">博客</a></li>
-                        <!--<li><a href="message.html">留言</a></li>-->
-						<!--<li><a href="diary.html">日记</a></li>-->
-                        <li><a href="/blog/write">编写</a></li>
-                    </ul>
-                </nav>
-                <a class="phone-menu">
-                    <i></i>
-                    <i></i>
-                    <i></i>
-                </a>
-            </div>
-        </div>
-    </header>
-    <div class="doc-container" id="doc-container">
-        <div style="width:100%;height:50px;background-color:white;padding:8px">
-        <button class="btn btn-success" style="float:right;margin-left:10px"type=button  onclick="sendarticle()">提交</button>
-        <button class="btn btn-success" style="float:right;margin-left:10px" type=button onclick="">预览</button>
-            <div class="blog-user"style="float:right;line-height:1px;position:relative">
-                <select id="type">
-                    <option value="1">java</option>
-                    <option value="2">python</option>
-                    <option value="3">javascript</option>
-                </select>
-            </div>
-        </div>
-         <!--<div class="container-fixed">-->
-            <!--<div class="timeline-box shadow">-->
-                <!--<div class="timeline-main">-->
-                    <!--<h1><i class="fa fa-clock-o"></i>日记</h1>-->
-                    <!--<div class="timeline-line"></div>-->
-                        <!--<div class="timeline-year">-->
-                            <!--<h2><a class="yearToggle">2020 年</a><i class="fa fa-caret-down fa-fw"></i></h2>-->
-        <div class="timeline-month" id="div1">
+</header>
+<div class="doc-container" id="doc-container" style="width:96%;margin:auto">
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+        </ol>
 
-        </div>
-        <!--</div>-->
-        <!--<h1 style="padding-top:4px;padding-bottom:2px;margin-top:40px;"><i class="fa fa-hourglass-end"></i>THE END</h1>-->
-        <!--</div>-->
-        <!--</div>-->
-    </div>
-
-    <footer class="grid-footer">
-        <div class="footer-fixed">
-            <div class="copyright">
-                <div class="info">
-                    <div class="contact">
-                        <a href="javascript:void(0)" class="github" target="_blank"><i class="fa fa-github"></i></a>
-                        <a href="#" class="qq" target="_blank" ><i class="fa fa-qq"></i></a>
-                        <a href="#" class="email" target="_blank" ><i class="fa fa-envelope"></i></a>
-                        <a href="javascript:void(0)" class="weixin"><i class="fa fa-weixin"></i></a>
-                    </div>
-                    <p class="mt05">
-                        Copyright &copy; 2019-2020 ZQ博客 All Rights Reserved V.3.1.3 Power by ZQ博客
-                    </p>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <img src="../image/txtbg404.png" alt="...">
+                <div class="carousel-caption">
+                    ...
+                </div>
+            </div>
+            <div class="item">
+                <img src="../image/head404.png" alt="...">
+                <div class="carousel-caption">
+                    ...
                 </div>
             </div>
         </div>
-    </footer>
-    <script src="../layui/layui.js"></script>
-    <script src="../js/yss/gloable.js"></script>
-    <script src="../js/plugins/nprogress.js"></script>
-    <script>NProgress.start();</script>
-    <script src="../js/pagediary.js"></script>
-    <script> 
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    <div style="width:100%;height:50px;background-color:white;padding:8px">
+        <button class="btn btn-success" style="float:right;margin-left:10px"type=button  onclick="sendarticle()">提交</button>
+        <button class="btn btn-success" style="float:right;margin-left:10px" type=button onclick="">预览</button>
+        <div class="blog-user"style="float:right;line-height:1px;position:relative">
+            <select id="type"class="form-control">
+                <option value="0" selected>--请选择--</option>
+                <option value="1">java</option>
+                <option value="2">python</option>
+                <option value="3">javascript</option>
+            </select>
+        </div>
+        <div class="title">
+            <input type="text" style="border:0;float:left;width:400px;height:30px;font-size:18px" placeholder="请在此处输入文章标题">
+        </div>
+    </div>
+    <!--<div class="container-fixed">-->
+    <!--<div class="timeline-box shadow">-->
+    <!--<div class="timeline-main">-->
+    <!--<h1><i class="fa fa-clock-o"></i>日记</h1>-->
+    <!--<div class="timeline-line"></div>-->
+    <!--<div class="timeline-year">-->
+    <!--<h2><a class="yearToggle">2020 年</a><i class="fa fa-caret-down fa-fw"></i></h2>-->
+    <div class="timeline-month" id="div1">
+
+    </div>
+    <!--</div>-->
+    <!--<h1 style="padding-top:4px;padding-bottom:2px;margin-top:40px;"><i class="fa fa-hourglass-end"></i>THE END</h1>-->
+    <!--</div>-->
+    <!--</div>-->
+</div>
+
+<footer class="grid-footer">
+    <div class="footer-fixed">
+        <div class="copyright">
+            <div class="info">
+                <div class="contact">
+                    <a href="javascript:void(0)" class="github" target="_blank"><i class="fa fa-github"></i></a>
+                    <a href="#" class="qq" target="_blank" ><i class="fa fa-qq"></i></a>
+                    <a href="#" class="email" target="_blank" ><i class="fa fa-envelope"></i></a>
+                    <a href="javascript:void(0)" class="weixin"><i class="fa fa-weixin"></i></a>
+                </div>
+                <p class="mt05">
+                    Copyright &copy; 2019-2020 ZQ博客 All Rights Reserved V.3.1.3 Power by ZQ博客
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="../layui/layui.js"></script>
+<script src="../js/yss/gloable.js"></script>
+<script src="../js/plugins/nprogress.js"></script>
+<script>NProgress.start();</script>
+<script src="../js/pagediary.js"></script>
+<script>
         window.onload = function () {
             NProgress.done();
         };
     </script>
-    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
-    <script type="text/javascript" src="//unpkg.com/wangeditor/dist/wangEditor.min.js"></script>
-    <script type="text/javascript" src="../js/auth.js"></script>
-    <script src="../js/modal_dialog.js"></script>
-    <script type="text/javascript">
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="//unpkg.com/wangeditor/dist/wangEditor.min.js"></script>
+<script type="text/javascript" src="../js/auth.js"></script>
+<script src="../js/modal_dialog.js"></script>
+<script type="text/javascript">
         var E = window.wangEditor
         var editor = new E('#div1')
         // 设置编辑区域高度为 500px
