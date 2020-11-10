@@ -1,6 +1,8 @@
 package com.forezp.entity;
 
-public class article {
+import java.io.Serializable;
+
+public class article implements Serializable {
     private Integer article_id;
     private String article_title;
     private String article_cover_img;
