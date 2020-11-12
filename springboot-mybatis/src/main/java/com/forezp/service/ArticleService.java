@@ -50,4 +50,9 @@ public class ArticleService implements ArticleMapper {
     public List<article> updateArticle(String article_title, String article_text, Integer user_id, String article_time, Integer article_type){
         return articleMapper.updateArticle(article_title,article_text,user_id,article_time,article_type);
     }
+
+    @Override
+    public int update_article_comments_like(Integer article_comments_like, Integer article_id) {
+        return articleMapper.update_article_comments_like(article_comments_like,article_id);
+    }
 }

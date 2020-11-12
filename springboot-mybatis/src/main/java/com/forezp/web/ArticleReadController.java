@@ -1,6 +1,7 @@
 package com.forezp.web;
 
 import com.alibaba.fastjson.JSONObject;
+import com.forezp.dao.MsgSever;
 import com.forezp.dao.ReviewMapper;
 import com.forezp.entity.article;
 import com.forezp.entity.review;
@@ -8,6 +9,7 @@ import com.forezp.service.ArticleService;
 import com.forezp.service.ReviewService;
 import com.sun.org.glassfish.gmbal.ParameterNames;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,6 +33,10 @@ public class ArticleReadController {
     ReviewMapper reviewMapper;
     @Autowired
     ReviewService reviewService;
+    @Autowired
+    MsgSever msgSever;
+    @Autowired
+    RedisTemplate redisTemplate;
 
     @RequestMapping(value = "/article_read", method = RequestMethod.GET)
     public String ToArticleRead(HttpServletRequest request, Model model) {
@@ -58,6 +64,13 @@ public class ArticleReadController {
         }
         List<review> reviews = reviewMapper.findreview(Integer.valueOf(id));
         model.addAttribute("reviews", reviews);
+        if (redisTemplate.hasKey("article_id_"+id)==false){
+            msgSever.setMsg("article_id_"+id,1);
+        }
+        else {
+            int nums = msgSever.getMsg("article_id_"+id)+1;
+            msgSever.setMsg("article_id_"+id,nums);
+        }
         return "read";
     }
 

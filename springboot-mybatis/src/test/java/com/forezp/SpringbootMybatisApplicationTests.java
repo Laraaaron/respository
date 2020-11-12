@@ -20,10 +20,10 @@ public class SpringbootMybatisApplicationTests {
 //		String result=articleService.hotarticle().toString();
 //		String result = accountService.matchinformation("412332441@qq.com").toString();
 //		String result =articleService.findbyarticle_title("快速").toString();
-		String result = articleService.findbyarticle_id(1).toString();
+		String result = articleService.findbyarticle_id(5).toString();
 		System.out.println(result);
-		String a="abc";
-		System.out.println(Integer.valueOf(null));
+//		String a="article_id_1";
+//		System.out.println(Integer.valueOf(a.split("_")[2]));
     }
 
 }

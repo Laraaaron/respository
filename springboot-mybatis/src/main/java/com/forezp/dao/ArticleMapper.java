@@ -37,4 +37,7 @@ public interface ArticleMapper {
 
     @Update("update from article set article_title=#{article_title},article_text=#{article_text},article_type=#{article_type} where article_id=#{article_id}")
     List<article> updateArticle(@Param("article_title") String article_title,@Param("article_text") String article_text,@Param("user_id") Integer user_id,@Param("article_time") String article_time,@Param("article_type") Integer article_type);
+
+    @Update("update article set article_comments_like = #{article_comments_like} where article_id = #{article_id}")
+    int update_article_comments_like(@Param("article_comments_like") Integer article_comments_like, @Param("article_id") Integer article_id);
 }
