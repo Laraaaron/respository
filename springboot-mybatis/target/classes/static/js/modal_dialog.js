@@ -245,7 +245,8 @@ function $modal(data) { // data 必传 且为对象
             margin: 'auto',
             borderRadius: '5px',
             boxShadow: '0 1px 6px rgba(0,0,0,.2)',
-            opacity: '0'
+            opacity: '0',
+            zIndex:'999999',
         })
         // 生成头部以及提示内容部分
         $('.' + idText + 'centerBox').append('<div class="' + idText + 'title"></div>')

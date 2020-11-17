@@ -207,8 +207,8 @@ function alert(e,text){
         timeout: 2000, // 单位 ms  显示多少毫秒后关闭弹框 （ confirm 下无效 | 不传默认为 2000ms | 最短显示时间为500ms）
         title:text, // 提示文字
         content: '', // 提示文字
-        top:100, //距离顶部距离 单位px
-        center: true,// 是否绝对居中 默认为false  设置true后   top无效
+        top:20, //距离顶部距离 单位px
+        center: false,// 是否绝对居中 默认为false  设置true后   top无效
         transition: 300, //过渡动画 默认 200   单位ms
         closable: true, // 是否显示可关闭按钮  默认为 false
         mask:true, // 是否显示遮罩层   默认为 false
