@@ -133,10 +133,44 @@ function tosignin() {
 
 }
 
+function checkTitle() {
+    //1.获取标题
+    var title = $("#title").val();
+    //2.定义标题
+    if(title.length ==0 || title.length>22){
+     $("#title").css("border", "1px solid #c05353");
+    return false
+    }
+    else{
+     $("#title").css("border", "");
+    return true
+    }
+
+    //3.判断，给出提示信息
+    console.log(title)
+}
+
+function checkType(){
+    //1.获取类型
+    var titletype = $("#type").val();
+    //2.核对类型
+    if(titletype == 0){
+    $("#type").css("border", "1px solid #c05353");
+    return false
+    }
+    else{
+    $("#type").css("border", "");
+    return true
+    }
+    //3.判断，给出提示信息
+    console.log(titletype)
+}
+
 function sendarticle() {
+    if(checkTitle() && checkType()){
     var text = editor.txt.html()
     var type = $("#type").val()
-    var title ="测试"
+    var title =$("#title").val()
     // console.log(text)
     // console.log(type)
     $.ajax({
@@ -161,8 +195,11 @@ function sendarticle() {
             alert("error","异常！请重试");
         }
     });
+   }
+    else{
+    alert("warning","请输入文章标题或选择文章类型")
+    }
 }
-
 function alert(e,text){
     $modal({
         type: 'alert', //弹框类型  'alert' or  'confirm' or 'message'   message提示(开启之前如果之前含有弹框则清除)
@@ -170,8 +207,8 @@ function alert(e,text){
         timeout: 2000, // 单位 ms  显示多少毫秒后关闭弹框 （ confirm 下无效 | 不传默认为 2000ms | 最短显示时间为500ms）
         title:text, // 提示文字
         content: '', // 提示文字
-        top:10, //距离顶部距离 单位px
-        center: false,// 是否绝对居中 默认为false  设置true后   top无效
+        top:100, //距离顶部距离 单位px
+        center: true,// 是否绝对居中 默认为false  设置true后   top无效
         transition: 300, //过渡动画 默认 200   单位ms
         closable: true, // 是否显示可关闭按钮  默认为 false
         mask:true, // 是否显示遮罩层   默认为 false
