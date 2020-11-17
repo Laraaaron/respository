@@ -1,6 +1,10 @@
 package com.forezp.dao;
 
+import com.forezp.entity.article;
+
+import java.util.List;
+
 public interface MsgSever {
-    public boolean setMsg(String key,Integer msg);
-    public Integer getMsg(String key);
+    public void setMsg(String key,List<article> msg);
+    public List<article> getMsg(String key);
 }

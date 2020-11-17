@@ -64,13 +64,15 @@ public class ArticleReadController {
         }
         List<review> reviews = reviewMapper.findreview(Integer.valueOf(id));
         model.addAttribute("reviews", reviews);
-        if (redisTemplate.hasKey("article_id_"+id)==false){
-            msgSever.setMsg("article_id_"+id,1);
+        List<article> nums = msgSever.getMsg("article_id_nums");
+        for(article tt:nums){
+            if (tt.getArticle_id()==Integer.valueOf(id)){
+                int result_nums= tt.getArticle_comments_like()+1;
+                tt.setArticle_comments_like(result_nums);
+                break;
+            }
         }
-        else {
-            int nums = msgSever.getMsg("article_id_"+id)+1;
-            msgSever.setMsg("article_id_"+id,nums);
-        }
+        msgSever.setMsg("article_id_nums",nums);
         return "read";
     }
 

@@ -1,9 +1,12 @@
 package com.forezp.service;
 
 import com.forezp.dao.MsgSever;
+import com.forezp.entity.article;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class MsgServiceImpl implements MsgSever {
@@ -12,13 +15,13 @@ public class MsgServiceImpl implements MsgSever {
     private RedisTemplate redisTemplate;
 
     @Override
-    public boolean setMsg(String key, Integer msg) {
+    public void setMsg(String key, List<article> msg) {
         redisTemplate.opsForValue().set(key,msg);
-        return true;
     }
 
     @Override
-    public Integer getMsg(String key) {
-        return Integer.valueOf(redisTemplate.opsForValue().get(key).toString());
+    public List<article> getMsg(String key) {
+
+        return (List<article>) redisTemplate.opsForValue().get(key);
     }
 }
