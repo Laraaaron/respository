@@ -132,32 +132,4 @@ public class ArticleController {
 //    }
 
 
-    //删除文章
-    @RequestMapping("/deleteArticle")
-    public String  deleteArticle(HttpServletRequest request){
-        Logger logger = Logger.getGlobal();
-        String article_id_str = request.getParameter("article_id");
-        logger.info("获得的article_id是：" + article_id_str);
-        Integer article_id = Integer.valueOf(article_id_str);
-        articleService.deleteArticle(article_id);
-        return "read";
-    }
-
-    //修改文章
-    public String updateArticle(HttpServletRequest request){
-        String article_type = request.getParameter("type");
-        String article_text = request.getParameter("text");
-        String article_title = request.getParameter("title");
-        HttpSession session = request.getSession();
-        Integer user_id = Integer.valueOf(session.getAttribute("user_id").toString());
-        Date date = new Date();
-        String dateFormat = new SimpleDateFormat("yyyy-MM-dd :hh:mm:ss").format(date).toString();
-
-        JSONObject result = new JSONObject();
-
-        List<article> articles = articleService.updateArticle(article_title, article_text, user_id, dateFormat, Integer.valueOf(article_type));
-        result.put("article",articles);
-        result.put("length",articles.size());
-        return result.toJSONString();
-    }
 }

@@ -19,7 +19,7 @@ public class ScheduleRunner {
 
     @Autowired
     ArticleMapper articleMapper;
-@Scheduled(fixedDelay = 50000)
+@Scheduled(fixedDelay = 500000)
     public void job1(){
     System.out.println(Thread.currentThread() +", job start@" +LocalTime.now());
 //    Set<String> keys = redisTemplate.keys("*");
