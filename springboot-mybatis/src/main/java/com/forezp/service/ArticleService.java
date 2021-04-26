@@ -55,4 +55,12 @@ public class ArticleService implements ArticleMapper {
     public int update_article_comments_like(Integer article_comments_like, Integer article_id) {
         return articleMapper.update_article_comments_like(article_comments_like,article_id);
     }
+
+    @Override
+    public List<article> find_personal_article(Integer user_id) {
+        /**
+         * 查询个人主页的文章信息
+         */
+        return articleMapper.find_personal_article(user_id);
+    }
 }

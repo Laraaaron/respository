@@ -54,4 +54,23 @@ public class PensonalController {
         articleService.updateArticle(article_title, article_text, user_id, dateFormat, Integer.valueOf(article_type));
         return "success";
     }
+
+    @RequestMapping("FindPersonalArticle")
+    @ResponseBody
+    public String findpersonalarticle(HttpSession session){
+        /**
+         * 查询个人主页信息
+         */
+        String user_id=session.getAttribute("user_id").toString();
+        JSONObject result = new JSONObject();
+        if (user_id !=null){
+            List<article> articles =articleService.find_personal_article(Integer.valueOf(user_id));
+            result.put("articles",articles);
+            result.put("status",true);
+            return result.toJSONString();
+        }
+        result.put("articles"," ");
+        result.put("status",false);
+        return  result.toJSONString();
+    }
 }

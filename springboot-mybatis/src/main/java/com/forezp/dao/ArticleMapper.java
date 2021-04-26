@@ -3,6 +3,7 @@ package com.forezp.dao;
 import com.forezp.entity.article;
 import org.apache.ibatis.annotations.*;
 
+import javax.annotation.security.PermitAll;
 import java.util.List;
 
 @Mapper
@@ -40,4 +41,7 @@ public interface ArticleMapper {
 
     @Update("update article set article_comments_like = #{article_comments_like} where article_id = #{article_id}")
     int update_article_comments_like(@Param("article_comments_like") Integer article_comments_like, @Param("article_id") Integer article_id);
+
+    @Select("select * from article where user_id = #{user_id}")
+    List<article> find_personal_article(@Param("user_id") Integer user_id);
 }
