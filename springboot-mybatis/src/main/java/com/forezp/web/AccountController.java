@@ -25,9 +25,6 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.logging.Logger;
 
-/**
- * Created by fangzhipeng on 2017/4/20.
- */
 @Controller
 @RequestMapping("/blog")
 public class AccountController {
